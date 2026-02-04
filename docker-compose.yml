@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+  mqtt:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - iot-network
+    restart: unless-stopped
+
+  database:
+    image: timescale/timescaledb:latest-pg14
+    container_name: database
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=adminpassword
+      - POSTGRES_DB=sensordata
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - iot-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MQTT_HOST=mqtt
+      - MQTT_PORT=1883
+      - DATABASE_URL=postgresql://admin:adminpassword@database:5432/sensordata
+    depends_on:
+      database:
+        condition: service_healthy
+      mqtt:
+        condition: service_started
+    networks:
+      - iot-network
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - iot-network
+    restart: unless-stopped
+
+volumes:
+  db_data:
+
+networks:
+  iot-network:
+    driver: bridge
