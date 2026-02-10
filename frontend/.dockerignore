@@ -1,5 +1,14 @@
 node_modules
 .next
-.git
+.env
 .env.local
+.env.development
+.env.production
+dist
+build
+.git
+.gitignore
+Dockerfile
+npm-debug.log
+yarn-error.log
 .DS_Store

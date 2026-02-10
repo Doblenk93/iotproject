@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Industrial HMI | Control System",
-  description: "Web-based Monitoring and Control",
+  title: "Pakar Ekosistem Indonesia",
+  description: "Solusi ekonomis dan ramah lingkungan untuk kebutuhan listrik Anda.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
