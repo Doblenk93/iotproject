@@ -1,11 +1,15 @@
 import json
+import os
 import paho.mqtt.client as mqtt
+
+MQTT_HOST = os.getenv("MQTT_HOST", "mqtt")
+MQTT_PORT = int(os.getenv("MQTT_PORT", 1883))
 
 last_message = {}
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT with result code", rc)
-    client.subscribe("water/+/+")
+    client.subscribe("iot/sensors/#")
 
 def on_message(client, userdata, msg):
     global last_message

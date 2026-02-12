@@ -1,6 +1,6 @@
 {
-  "name": "pakarekonomi-frontend",
-  "version": "0.1.0",
+  "name": "pakarekosistem-frontend",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "axios": "^1.13.5",
     "lucide-react": "^0.563.0",
     "next": "^16",
     "protobufjs": "^8.0.0",
