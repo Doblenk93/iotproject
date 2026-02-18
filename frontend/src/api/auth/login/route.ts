@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     // 1. Kirim Credential ke Backend Python
-    const response = await fetch('http://URL_BACKEND_PYTHON_KAMU/api/login', {
+    const response = await fetch('http://localhost:8000/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

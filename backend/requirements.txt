@@ -1,3 +1,20 @@
-fastapi
-uvicorn
-paho-mqtt
+# --- Core Framework ---
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+
+# --- Database (Async) ---
+sqlalchemy>=2.0.25
+asyncpg>=0.29.0
+
+# --- Authentication & Security ---
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.7
+
+# --- IoT / MQTT ---
+paho-mqtt>=1.6.1
+
+# --- Utilities ---
+email-validator>=2.1.0
