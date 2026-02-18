@@ -1,26 +1,32 @@
-import { Leaf, Zap, LineChart, Users, Award, ArrowRight } from 'lucide-react';
+import { Leaf, Zap, LineChart, Users, Award, ArrowRight, Phone } from 'lucide-react';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
 import { Testimonials } from '@/components/Testimonials';
 
 export default function HomePage() {
   const services = [
     {
+      color: '#22c55e',
       icon: <Leaf className="w-12 h-12 text-[#22c55e]" />,
       title: 'Environmental Assessments',
       description:
         'Comprehensive environmental impact studies and sustainability audits for your projects.',
+      link: '/services/environmental-assessments',
     },
     {
+      color: '#3b82f6',
       icon: <Zap className="w-12 h-12 text-[#3b82f6]" />,
       title: 'Electrical Engineering',
       description:
         'Innovative electrical solutions designed for efficiency and environmental responsibility.',
+      link: '/'
     },
     {
-      icon: <LineChart className="w-12 h-12 text-[#22c55e]" />,
+      color: '#f59e0b',
+      icon: <LineChart className="w-12 h-12 text-[#f59e0b]" />,
       title: 'Energy Optimization',
       description:
         'Data-driven strategies to reduce energy consumption and maximize renewable integration.',
+      link: '/'
     },
   ];
 
@@ -47,15 +53,19 @@ export default function HomePage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Empowering Sustainable Electrical Solutions
+            Pelopor Solusi Kelistrikan Terbarukan
           </h1>
           <p className="text-lg sm:text-xl mb-8 text-slate-200 max-w-2xl mx-auto">
-            Reducing carbon footprints with innovative environmental tech
+            Mengurangi limbah karbon dengan teknologi lingkungan inovatif
           </p>
-          <button className="bg-[#22c55e] text-white px-8 py-4 rounded-lg hover:bg-[#16a34a] transition-all transform hover:scale-105 inline-flex items-center gap-2 text-lg font-semibold">
-            Explore Services
+          <a
+            href="/services" 
+            className="bg-[#22c55e] text-white px-8 py-4 rounded-lg hover:bg-[#16a34a] transition-all 
+            transform inline-flex items-center gap-2 text-lg font-semibold"
+          >
+            Pelajari selengkapnya
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </a>
         </div>
       </section>
 
@@ -64,32 +74,32 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Our Core Services
+              Keahlian Kami
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Comprehensive solutions for environmental and electrical excellence
+              Dari penilaian dampak lingkungan hingga solusi rekayasa listrik, tim ahli kami siap memberikan hasil yang terbaik.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div
+              <a
                 key={index}
-                className="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-xl hover:border-[#22c55e] transition-all group"
+                href={service.link}
+                className={`bg-white border border-slate-200 rounded-xl p-8 hover:shadow-xl hover:border-[#87c55e] transition-all group duration-300`}
               >
-                <div className="mb-6 transform group-hover:scale-110 transition-transform">
+                <div className="mb-6 w-12 h-12 flex justify-start items-center transform group-hover:scale-110 transition-transform origin-center">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
-                <a
-                  href="#"
-                  className="text-[#22c55e] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all"
+                <div
+                  className={`text-[${service.color}] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all`}
                 >
-                  Learn More
+                  Selengkapnya
                   <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
+                </div>
+              </a>
             ))}
           </div>
         </div>
@@ -119,15 +129,19 @@ export default function HomePage() {
       <section className="py-20 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Ready to Transform Your Energy Future?
+            Siap untuk Membangun Masa Depan Energi Anda?
           </h2>
           <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-            {"Let's"} discuss how we can help you achieve your sustainability and electrical goals.
+            Hubungi tim ahli kami hari ini untuk konsultasi gratis dan lihat bagaimana kami dapat membantu Anda mencapai tujuan lingkungan dan kelistrikan Anda.
           </p>
-          <button className="bg-[#22c55e] text-white px-8 py-4 rounded-lg hover:bg-[#16a34a] transition-all transform hover:scale-105 inline-flex items-center gap-2 text-lg font-semibold">
-            Schedule a Consultation
+          <a
+            href="/contact"
+            className="bg-[#22c55e] text-white px-8 py-4 rounded-lg hover:bg-[#16a34a] transition-all transform hover:scale-105 inline-flex items-center gap-2 text-lg font-semibold"
+          >
+            Hubungi kami
+            <Phone className="w-5 h-5" />
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </a>
         </div>
       </section>
     </div>

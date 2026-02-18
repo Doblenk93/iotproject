@@ -9,21 +9,21 @@ export function Testimonials() {
     const testimonials = [
     {
       image: 'https://images.unsplash.com/photo-1626793369994-a904d2462888?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwc29sYXIlMjBwYW5lbCUyMHByb2plY3R8ZW58MXx8fHwxNzcwMjk2ODE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      quote: 'Pakar Ekosistem Indonesia transformed our facility with sustainable energy solutions that cut costs by 40%.',
-      author: 'Sarah Johnson',
-      company: 'GreenTech Industries',
+      quote: 'Pakar Ekosistem Indonesia membantu mengurangi jejak karbon kami secara signifikan dengan solusi inovatif mereka. Layanan mereka sangat profesional dan berdedikasi.',
+      author: 'Doblenk Clockers',
+      company: 'Susah Senang Berkarya',
     },
     {
       image: 'https://images.unsplash.com/photo-1765874324922-a97370f7a969?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGVuZXJneSUyMGluZnJhc3RydWN0dXJlfGVufDF8fHx8MTc3MDI5NjgxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      quote: 'Professional, innovative, and committed to environmental excellence. Highly recommended!',
-      author: 'Michael Chen',
-      company: 'Sustainable Solutions Corp',
+      quote: 'Profesional, responsif, dan sangat berpengetahuan. Pakar Ekosistem Indonesia benar-benar memahami kebutuhan kami dan memberikan solusi yang melebihi harapan kami.',
+      author: 'Azhari Blanker',
+      company: 'PT. Energi Hijau Nusantara',
     },
     {
       image: 'https://images.unsplash.com/photo-1756511332583-99fc0d4bf7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHBhbmVscyUyMGdyZWVuJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc3MDI5Njc4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      quote: 'Their expertise in electrical and environmental integration is unmatched in the industry.',
-      author: 'Emily Rodriguez',
-      company: 'EcoCity Development',
+      quote: 'Pakar Ekosistem Indonesia memberikan layanan yang luar biasa dari awal hingga akhir proyek kami. Mereka sangat berkomitmen untuk keberlanjutan dan hasilnya terlihat dalam setiap aspek pekerjaan mereka.',
+      author: 'Aditia Pratama',
+      company: 'PT. Solusi Energi Terbarukan',
     },
   ];
 
@@ -40,10 +40,10 @@ export function Testimonials() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Client Success Stories
+              Apa Kata Klien Kami?
             </h2>
             <p className="text-lg text-slate-600">
-              Hear from companies {"we've"} helped achieve their sustainability goals
+              Lihat bagaimana solusi kami telah membuat perbedaan nyata bagi klien kami di berbagai industri.
             </p>
           </div>
 

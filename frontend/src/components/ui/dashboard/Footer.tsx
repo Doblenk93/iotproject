@@ -30,20 +30,20 @@ export function Footer() {
               Pakar Ekosistem Indonesia
             </h3>
             <p className="text-sm leading-relaxed text-slate-400">
-              Pelopor solusi kelistrikan terbarukan untuk masa depan yang lebih baik.
+              Leading the way in sustainable electrical solutions for a greener, smarter tomorrow.
             </p>
             
             {/* Social Icons */}
             <div className="flex gap-3 pt-2">
               {[
-                { icon: Facebook, label: 'Facebook' , href: 'https://www.facebook.com/pakarekosistemindonesia'},
-                { icon: Twitter, label: 'Twitter' , href: 'https://twitter.com/pakarekosistem'},
-                { icon: Linkedin, label: 'LinkedIn' , href: 'https://www.linkedin.com/company/pakar-ekosistem-indonesia'},
-                { icon: Instagram, label: 'Instagram' , href: 'https://www.instagram.com/pakarekosistemindonesia'},
+                { icon: Facebook, label: 'Facebook' },
+                { icon: Twitter, label: 'Twitter' },
+                { icon: Linkedin, label: 'LinkedIn' },
+                { icon: Instagram, label: 'Instagram' },
               ].map((social, index) => (
                 <a
                   key={index}
-                  href={social.href || '#'}
+                  href="#"
                   className="w-9 h-9 bg-slate-800/50 rounded-lg flex items-center justify-center text-slate-400 hover:bg-[#22c55e] hover:text-white transition-all duration-300 hover:-translate-y-1"
                   aria-label={social.label}
                 >
@@ -58,10 +58,10 @@ export function Footer() {
             <h3 className="text-lg font-semibold text-white mb-4 lg:mb-6">Quick Links</h3>
             <ul className="space-y-3 text-sm">
               {[
-                { name: 'Tentang Kami', href: '/about' },
-                { name: 'Layanan Kami', href: '/services' },
+                { name: 'About Us', href: '/about' },
+                { name: 'Our Services', href: '/services' },
                 { name: 'Portofolio', href: '/portofolio' },
-                { name: 'Karir', href: '#' }, // Opsional link
+                { name: 'Careers', href: '#' }, // Opsional link
               ].map((item) => (
                 <li key={item.name}>
                   <Link 
@@ -82,19 +82,19 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#22c55e] flex-shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  Trusmiland Rumah Ningrat Blok B No 48, Desa Cracas Kec. Cilimus, Kuningan Jawa Barat, 45556
+                  123 Green Street, <br />Eco City, EC 12345
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#22c55e] flex-shrink-0" />
-                <a href="tel:+6281380126377" className="hover:text-white transition-colors">
-                  (+62) 813-8012-6377 (Olin)
+                <a href="tel:+15551234567" className="hover:text-white transition-colors">
+                  (555) 123-4567
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#22c55e] flex-shrink-0" />
-                <a href="mailto:pakar.ekosistem@gmail.com" className="hover:text-white transition-colors break-all">
-                  pakar.ekosistem@gmail.com
+                <a href="mailto:info@pakarekosistemindonesia.com" className="hover:text-white transition-colors break-all">
+                  info@pakarekosistemindonesia.com
                 </a>
               </li>
             </ul>

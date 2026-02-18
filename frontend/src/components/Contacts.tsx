@@ -123,7 +123,7 @@ export function Contacts() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22c55e] focus:border-transparent transition-all"
-                        placeholder="(555) 123-4567"
+                        placeholder="(62) 896-1234-5678"
                       />
                     </div>
                     <div>
@@ -180,7 +180,7 @@ export function Contacts() {
             <div className="space-y-6">
               {/* Contact Information */}
               <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-slate-900 mb-6">Contact Information</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-6">Informasi Kontak</h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -188,11 +188,12 @@ export function Contacts() {
                       <MapPin className="w-5 h-5 text-[#22c55e]" />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-900 mb-1">Address</p>
+                      <p className="font-semibold text-slate-900 mb-1">Alamat</p>
                       <p className="text-sm text-slate-600">
-                        123 Green Street<br />
-                        Eco City, EC 12345<br />
-                        United States
+                        Trusmiland Rumah Ningrat Blok B No 48 <br />
+                        Desa Cracas Kec. Cilimus<br />
+                        Kuningan Jawa Barat<br />
+                        45556
                       </p>
                     </div>
                   </div>
@@ -202,9 +203,13 @@ export function Contacts() {
                       <Phone className="w-5 h-5 text-[#3b82f6]" />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-900 mb-1">Phone</p>
-                      <p className="text-sm text-slate-600">(555) 123-4567</p>
-                      <p className="text-sm text-slate-600">(555) 987-6543</p>
+                      <p className="font-semibold text-slate-900 mb-1">Kontak</p>
+                      <a 
+                        href="https://wa.me/6281380126377?text=Halo,%20saya%20ingin%20bertanya....." 
+                        className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors"
+                      >
+                        (+62) 813-8012-6377 (Olin)
+                      </a>
                     </div>
                   </div>
 
@@ -214,8 +219,12 @@ export function Contacts() {
                     </div>
                     <div>
                       <p className="font-semibold text-slate-900 mb-1">Email</p>
-                      <p className="text-sm text-slate-600">info@pakarekosistemindonesia.com</p>
-                      <p className="text-sm text-slate-600">support@pakarekosistemindonesia.com</p>
+                      <a 
+                        href="mailto:pakar.ekosistem@gmail.com?subject=Halo&body=Apa%kabar" 
+                        className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors"
+                      >
+                        pakar.ekosistem@gmail.com
+                      </a>
                     </div>
                   </div>
 
@@ -224,11 +233,11 @@ export function Contacts() {
                       <Clock className="w-5 h-5 text-[#3b82f6]" />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-900 mb-1">Business Hours</p>
+                      <p className="font-semibold text-slate-900 mb-1">Jam Kerja</p>
                       <p className="text-sm text-slate-600">
-                        Mon - Fri: 8:00 AM - 6:00 PM<br />
-                        Sat: 9:00 AM - 4:00 PM<br />
-                        Sun: Closed
+                        Senin - {"Jum'at"}: 8:00 AM - 6:00 PM<br />
+                        Sabtu: 9:00 AM - 4:00 PM<br />
+                        Minggu: Tutup
                       </p>
                     </div>
                   </div>
@@ -242,7 +251,7 @@ export function Contacts() {
                   <div className="relative text-center">
                     <MapPin className="w-12 h-12 text-[#22c55e] mx-auto mb-2" />
                     <p className="text-slate-600 font-semibold">Interactive Map</p>
-                    <p className="text-sm text-slate-500">Eco City, EC 12345</p>
+                    <p className="text-sm text-slate-500">Trusmiland Rumah Ningrat Blok B No 48, Desa Cracas Kec. Cilimus, Kuningan Jawa Barat, 45556</p>
                   </div>
                 </div>
               </div>
