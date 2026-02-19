@@ -1,0 +1,7 @@
+mqtt.pakarekosistemindonesia.com {
+    reverse_proxy mqtt:9001
+}
+
+www.pakarekosistemindonesia.com {
+    reverse_proxy frontend:3000
+}
