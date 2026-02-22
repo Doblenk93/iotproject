@@ -61,12 +61,12 @@ export default function AboutPage() {
     {
       icon: <Leaf className="w-10 h-10 text-[#22c55e]" />,
       title: 'Sustainability',
-      description: 'Committed to reducing environmental impact in every project.',
+      description: 'PEI sangat menghargai praktik etika dan lingkungan. Kami mengelola bisnis kami untuk melindungi lingkungan dan melestarikan sumber daya alam bumi, baik untuk generasi sekarang maupun yang akan datang.',
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-[#3b82f6]" />,
       title: 'Innovation',
-      description: 'Pioneering cutting-edge solutions for complex challenges.',
+      description: 'PEI mendukung dan mendorong penelitian dan pengembangan dalam hal kemajuan teknologi dan lingkungan terbaru untuk memastikan bahwa inovasi hari ini adalah solusi konvensional masa depan.',
     },
     {
       icon: <Users className="w-10 h-10 text-[#22c55e]" />,
@@ -95,12 +95,17 @@ export default function AboutPage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-            Our Mission: Greening Electrical Innovation
+            INTEGRATED ENVIRONMENTAL SERVICES
           </h1>
           <p className="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
-            At Pakar Ekosistem Indonesia, we bridge the gap between cutting-edge electrical engineering and environmental stewardship. 
-            Our team of experts is dedicated to creating sustainable solutions that power a better tomorrow while 
-            protecting our planet for future generations.
+            PT Pakar Ekosistem Indonesia (PEI) adalah perusahaan penyedia layanan pengelolaan lingkungan 
+            terpadu yang didirikan pada 11 Mei 2021 oleh para pakar berpengalaman belasan tahun. Berfokus 
+            pada teknologi berkelanjutan, perusahaan ini mengintegrasikan layanan konsultasi, engineering, 
+            perencanaan proyek, hingga pengujian dan monitoring lingkungan. Dengan filosofi pelayanan satu 
+            pintu, PEI berkomitmen memberikan solusi profesional yang selaras dengan prinsip-prinsip 
+            pengelolaan lingkungan hidup yang terukur dan berkelanjutan.
+
+            
           </p>
         </div>
       </section>
@@ -110,17 +115,18 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="bg-gradient-to-br from-[#22c55e] to-[#16a34a] p-8 rounded-2xl text-white">
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
               <p className="text-lg leading-relaxed">
-                To deliver innovative electrical and environmental solutions that reduce carbon emissions, 
-                optimize energy efficiency, and create lasting positive impact for our clients and communities.
+                &ldquo;Menjadi mitra terdepan dalam solusi pengelolaan limbah berkelanjutan untuk menciptakan masa depan lingkungan yang lebih bersih dan sehat.&rdquo;
               </p>
             </div>
             <div className="bg-gradient-to-br from-[#3b82f6] to-[#2563eb] p-8 rounded-2xl text-white">
-              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-lg leading-relaxed">
-                &ldquo;To be the world&rsquo;s leading provider of sustainable electrical solutions, setting the standard for 
-                environmental responsibility and technological excellence in every project we undertake.&rdquo;
+                <strong>1.Solusi Inovatif:</strong> Menghadirkan teknologi dan metode pengelolaan limbah yang efisien serta ramah lingkungan bagi setiap sektor industri.<br />
+                <strong>2.Kemitraan Strategis:</strong> Membangun kolaborasi yang mendalam dengan klien untuk memberikan solusi yang tepat guna dan sesuai regulasi.<br />
+                <strong>3.Pemberdayaan Sumber Daya:</strong> Terus meningkatkan kompetensi tim ahli agar selalu relevan dengan perkembangan standar lingkungan global.<br />
+                <strong>4.Edukasi & Kesadaran:</strong> Mendorong kesadaran masyarakat dan pelaku industri akan pentingnya tata kelola limbah yang bertanggung jawab.<br />
               </p>
             </div>
           </div>
