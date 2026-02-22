@@ -131,10 +131,10 @@ export default function HomePage() {
       <section className="py-20 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Siap untuk Membangun Masa Depan Energi Anda?
+            Siap untuk Membangun Masa Depan Lingkungan Anda?
           </h2>
           <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-            Hubungi tim ahli kami hari ini untuk konsultasi gratis dan lihat bagaimana kami dapat membantu Anda mencapai tujuan lingkungan dan kelistrikan Anda.
+            Hubungi tim ahli kami hari ini untuk konsultasi gratis dan lihat bagaimana kami dapat membantu Anda mencapai tujuan lingkungan dan perijinan anda.
           </p>
           <a
             href="/contact"
