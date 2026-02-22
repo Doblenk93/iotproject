@@ -7,25 +7,27 @@ export default function HomePage() {
     {
       color: '#22c55e',
       icon: <Leaf className="w-12 h-12 text-[#22c55e]" />,
-      title: 'Environmental Assessments',
+      title: 'Rekayasa Sistem Pengolahan Limbah',
       description:
-        'Comprehensive environmental impact studies and sustainability audits for your projects.',
+        `Instalasi IPAL/WWTP, 
+        Optimasi Mekanikal, 
+        Manajemen Limbah B3.`,
       link: '/services/environmental-assessments',
     },
     {
       color: '#3b82f6',
       icon: <Zap className="w-12 h-12 text-[#3b82f6]" />,
-      title: 'Electrical Engineering',
+      title: 'Smart Waste Management (IoT)',
       description:
-        'Innovative electrical solutions designed for efficiency and environmental responsibility.',
+        'Automasi Sitem, Dashboar Digital, Monitoring RealTime, ',
       link: '/'
     },
     {
       color: '#f59e0b',
       icon: <LineChart className="w-12 h-12 text-[#f59e0b]" />,
-      title: 'Energy Optimization',
+      title: 'Kepatuhan & Konsultasi',
       description:
-        'Data-driven strategies to reduce energy consumption and maximize renewable integration.',
+        'Setifikasi & Audit, \nStudi Amdal, \nOptimalisasi',
       link: '/'
     },
   ];
@@ -53,10 +55,10 @@ export default function HomePage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Pelopor Solusi Kelistrikan Terbarukan
+            Pakar Ekosistem Indonesia
           </h1>
           <p className="text-lg sm:text-xl mb-8 text-slate-200 max-w-2xl mx-auto">
-            Mengurangi limbah karbon dengan teknologi lingkungan inovatif
+            INTEGRATED ENVIRONMENTAL SERVICE
           </p>
           <a
             href="/services" 
@@ -74,10 +76,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Keahlian Kami
+              Keahlian dan Kapabilitas Kami
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Dari penilaian dampak lingkungan hingga solusi rekayasa listrik, tim ahli kami siap memberikan hasil yang terbaik.
+              Dari pengolahan limbah hingga perstujuan lingkungan
             </p>
           </div>
 
