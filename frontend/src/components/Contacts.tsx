@@ -65,8 +65,10 @@ export function Contacts() {
     <div>
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
+
             {/* Contact Form - Takes 2 columns */}
+            {/*
             <div className="lg:col-span-2">
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-slate-900 mb-6">Send Us a Message</h2>
@@ -175,6 +177,7 @@ export function Contacts() {
                 </form>
               </div>
             </div>
+            */}
 
             {/* Info Sidebar */}
             <div className="space-y-6">
@@ -210,6 +213,13 @@ export function Contacts() {
                       >
                         (+62) 813-8012-6377 (Olin)
                       </a>
+                      <br/>
+                      <a 
+                        href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20bertanya....." 
+                        className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors"
+                      >
+                        (+62) 812-3456-7890 (Bambang)
+                      </a>
                     </div>
                   </div>
 
@@ -233,11 +243,10 @@ export function Contacts() {
                       <Clock className="w-5 h-5 text-[#3b82f6]" />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-900 mb-1">Jam Kerja</p>
+                      <p className="font-semibold text-slate-900 mb-1">Jam Operasional</p>
                       <p className="text-sm text-slate-600">
-                        Senin - {"Jum'at"}: 8:00 AM - 6:00 PM<br />
-                        Sabtu: 9:00 AM - 4:00 PM<br />
-                        Minggu: Tutup
+                        Hari Kerja: 8:00 AM - 6:00 PM<br />
+                        Hari Libur Nasional: Tutup
                       </p>
                     </div>
                   </div>
@@ -245,6 +254,7 @@ export function Contacts() {
               </div>
 
               {/* Map Placeholder */}
+              {/*
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 <div className="bg-slate-200 h-64 flex items-center justify-center relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#22c55e]/20 to-[#3b82f6]/20" />
@@ -255,12 +265,14 @@ export function Contacts() {
                   </div>
                 </div>
               </div>
+              */}
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
+      {/*
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -299,6 +311,7 @@ export function Contacts() {
           </div>
         </div>
       </section>
+      */}
     </div>
   )
 };

@@ -1,17 +1,29 @@
 import { Phone } from 'lucide-react';
 import { Contacts } from '@/components/Contacts';
+import { ImageWithFallback } from '@/components/ImageWithFallback';
 
 export default function ContactPage() {
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative text-white py-20 overflow-hidden min-h-[60vh]">
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src="/images/PengolahanLimbahGenerated.jpg"
+            alt="Pengolahan Limbah Industri"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50" />
+        </div>
+
+        {/* Content Container */}
+        <div className="absolute inset-0 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col justify-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">Hubungi Kami untuk Proyek Anda Selanjutnya</h1>
           <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
-            Punya pertanyaan atau siap untuk memulai? 
-            Tim ahli kami siap membantu Anda mencapai tujuan lingkungan dan kelistrikan Anda.
+            Punya pertanyaan atau siap untuk memulai proyek Anda? <br/>
+            Tim ahli kami siap membantu untuk melayani kebutuhan lingkungan Anda.
           </p>
         </div>
       </section>

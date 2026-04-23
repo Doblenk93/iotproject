@@ -46,8 +46,8 @@ export default function HomePage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1756511332583-99fc0d4bf7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHBhbmVscyUyMGdyZWVuJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc3MDI5Njc4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Solar panels in green landscape"
+            src="/images/PengolahanLimbahGenerated.jpg"
+            alt="Pengolahan Limbah Industri"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50" />
@@ -60,14 +60,14 @@ export default function HomePage() {
           <p className="text-lg sm:text-xl mb-8 text-slate-200 max-w-2xl mx-auto">
             INTEGRATED ENVIRONMENTAL SERVICE
           </p>
-          <a
+          {/*<a
             href="/services" 
             className="bg-[#22c55e] text-white px-8 py-4 rounded-lg hover:bg-[#16a34a] transition-all 
             transform inline-flex items-center gap-2 text-lg font-semibold"
           >
             Pelajari selengkapnya
             <ArrowRight className="w-5 h-5" />
-          </a>
+          </a>*/}
         </div>
       </section>
 
@@ -79,7 +79,7 @@ export default function HomePage() {
               Keahlian dan Kapabilitas Kami
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Dari pengolahan limbah hingga perstujuan lingkungan
+              Dari pengolahan limbah hingga persetujuan lingkungan
             </p>
           </div>
 
@@ -95,12 +95,6 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
-                <div
-                  className={`text-[${service.color}] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all`}
-                >
-                  Selengkapnya
-                  <ArrowRight className="w-4 h-4" />
-                </div>
               </a>
             ))}
           </div>
@@ -108,6 +102,7 @@ export default function HomePage() {
       </section>
 
       {/* Impact Stats */}
+      {/*
       <section className="py-20 bg-[#22c55e]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -123,6 +118,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Testimonials */}
       <Testimonials />            
@@ -134,7 +130,7 @@ export default function HomePage() {
             Siap untuk Membangun Masa Depan Lingkungan Anda?
           </h2>
           <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-            Hubungi tim ahli kami hari ini untuk konsultasi gratis dan lihat bagaimana kami dapat membantu Anda mencapai tujuan lingkungan dan perijinan anda.
+            Hubungi tim ahli kami untuk konsultasi dan lihat bagaimana kami dapat membantu Anda mencapai tujuan lingkungan dan perijinan anda.
           </p>
           <a
             href="/contact"

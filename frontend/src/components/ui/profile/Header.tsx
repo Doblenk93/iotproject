@@ -12,9 +12,9 @@ export function Header() {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
+    /*{ name: 'Services', href: '/services' },*/
     { name: 'Portofolio', href: '/portofolio' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -23,35 +23,37 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b-2 border-[#22c55e]/30">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex lg:grid lg:grid-cols-3 justify-between items-center h-16">
           
           {/* Logo */}
-          <Link 
-            href="/"
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-shrink-0"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <div className="relative w-10 h-10 flex-shrink-0">
-              <Image 
-                src="/favicon.ico" 
-                alt="PEI Logo" 
-                width={40} 
-                height={40} 
-                className="rounded-lg object-contain"
-              />
-            </div>
-            <span className="text-sm lg:text-lg font-bold text-slate-900 leading-tight">
-             Pakar Ekosistem Indonesia
-           </span>
-          </Link>
+          <div className="flex justify-start">
+            <Link 
+              href="/"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-shrink-0"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <div className="relative w-10 h-10 flex-shrink-0">
+                <Image 
+                  src="/favicon.ico" 
+                  alt="PEI Logo" 
+                  width={40} 
+                  height={40} 
+                  className="rounded-lg object-contain"
+                />
+              </div>
+              <span className="text-sm lg:text-lg font-bold text-slate-900 leading-tight">
+               Pakar Ekosistem Indonesia
+             </span>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav className="hidden lg:flex items-center justify-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative transition-colors font-medium test-sm xl:text-base ${
+                className={`relative transition-colors font-medium test-sm xl:text-base select-none ${
                   isActive(item.href)
                     ? 'text-[#22c55e]'
                     : 'text-slate-700 hover:text-[#22c55e]'
@@ -66,12 +68,13 @@ export function Header() {
           </nav>
 
           {/* CTA Button */}
-          <Link
+          {/*<Link
             href="/app"
             className="bg-[#22c55e] text-white px-5 py-2 rounded-lg hover:bg-[#16a34a] transition-colors font-medium text-sm xl:text-base hidden lg:inline-flex items-center justify-center"
           >
             Dashboard
-          </Link>
+          </Link>*/}
+          <div className='flex justify-end items-center'></div>
 
           {/* Mobile Menu Button */}
           <button
@@ -117,7 +120,7 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <div className="h-px bg-slate-100 my-2" />
+              {/* <div className="h-px bg-slate-100 my-2" />
               <Link
                 href="/app"
                 onClick={() => setMobileMenuOpen(false)}
@@ -128,7 +131,7 @@ export function Header() {
                 `}
               >
                 Dashboard
-              </Link>
+              </Link> */}
             </nav>
           </div>
       </div>

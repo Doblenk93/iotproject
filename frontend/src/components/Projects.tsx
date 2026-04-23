@@ -1,95 +1,70 @@
 "use client";
 
 import { useState } from 'react';
-import { ArrowRight, Filter } from 'lucide-react';
+import { FolderOpen, Filter, MapPin, Calendar } from 'lucide-react';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
 
 export function Projects() {
     const [activeFilter, setActiveFilter] = useState('All');
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [activeCard, setActiveCard] = useState<number | null>(null);
     
-      const filters = ['All', 'Environmental', 'Electrical', 'Renewable'];
+    const filters = ['All', 'Environmental', 'Electrical'];
+  
+    const projects = [
+      {
+        image: '/images/DKI_Cirebon_marikangen_(STP).jpeg',
+        title: 'STP Marikangen Cirebon: Wastewater Treatment Excellence',
+        category: 'Environmental',
+        detail: 'Instalasi sistem STP untuk mengolah limbah cair industri di kawasan Marikangen, Cirebon.',
+        tempat: 'Cirebon, Jawa Barat',
+        waktu: 'Okt 2023 - Jan 2024',
+      },
+      {
+        image: '/images/DKI_Cirebon_wadas_(STP).jpeg',
+        title: 'STP Wadas Cirebon: Sustainable Waste Management',
+        category: 'Environmental',
+        detail: 'Pembangunan dan optimasi STP untuk pengolahan limbah cair di kawasan Wadas, Cirebon.',
+        tempat: 'Cirebon, Jawa Barat',
+        waktu: 'Maret 2024 - April 2024',
+      },
+    ];
     
-      const projects = [
-        {
-          image: 'https://images.unsplash.com/photo-1726866672851-5b99c837603c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBzb2xhciUyMGluc3RhbGxhdGlvbnxlbnwxfHx8fDE3NzAyMTcwMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Commercial Solar Installation',
-          category: 'Renewable',
-          description: '500kW rooftop solar system for retail complex, reducing energy costs by 45%.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1630450364945-0c1ec2c449cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aW5kJTIwZmFybSUyMHJlbmV3YWJsZSUyMGVuZXJneXxlbnwxfHx8fDE3NzAyOTY5MzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Wind Farm Development',
-          category: 'Renewable',
-          description: '50MW wind farm providing clean energy to 15,000 homes annually.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1649518811431-48cb38252f79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGJ1aWxkaW5nJTIwc3VzdGFpbmFibGUlMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzcwMjEyMzkyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'LEED Platinum Office Building',
-          category: 'Environmental',
-          description: 'Sustainable electrical design achieving net-zero energy certification.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1672542128826-5f0d578713d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMHZlaGljbGUlMjBjaGFyZ2luZyUyMHN0YXRpb258ZW58MXx8fHwxNzcwMjE3MDQ4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'EV Charging Network',
-          category: 'Electrical',
-          description: 'City-wide installation of 50 electric vehicle charging stations.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1758797899821-46e9aa667409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwZW5lcmd5JTIwZWZmaWNpZW5jeXxlbnwxfHx8fDE3NzAyOTY5Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Manufacturing Energy Audit',
-          category: 'Environmental',
-          description: 'Comprehensive energy assessment resulting in 30% consumption reduction.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1768245076807-00a286f0a7b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJsZSUyMGZhY3RvcnklMjBzb2xhciUyMHBhbmVsc3xlbnwxfHx8fDE3NzAyOTY5Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Industrial Solar Array',
-          category: 'Renewable',
-          description: '2MW ground-mounted solar installation for manufacturing facility.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1766507679641-51002768af6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFydCUyMGdyaWQlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc3MDI1NTI0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Smart Grid Implementation',
-          category: 'Electrical',
-          description: 'Advanced metering infrastructure for 10,000 residential units.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1770219792143-1586d82a7101?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwbW9uaXRvcmluZyUyMGVxdWlwbWVudHxlbnwxfHx8fDE3NzAyOTY5Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Environmental Monitoring System',
-          category: 'Environmental',
-          description: 'Real-time air quality and emissions tracking for industrial site.',
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1765883958852-786edf3ca505?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZW5ld2FibGUlMjBlbmVyZ3klMjBwcm9qZWN0JTIwY29uc3RydWN0aW9ufGVufDF8fHx8MTc3MDI3NjM2Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-          title: 'Renewable Energy Campus',
-          category: 'Renewable',
-          description: 'Hybrid solar-wind system powering university campus.',
-        },
-      ];
-    
-      const filteredProjects =
-        activeFilter === 'All'
-          ? projects
-          : projects.filter((project) => project.category === activeFilter);
-    
-      const featuredProject = {
-        image: 'https://images.unsplash.com/photo-1756511332583-99fc0d4bf7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHBhbmVscyUyMGdyZWVuJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc3MDI5Njc4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        title: 'Mega Solar Park Project',
-        category: 'Renewable Energy',
-        description:
-          'Our largest project to date: a 100MW solar farm spanning 500 acres, providing clean energy to over 30,000 homes and businesses.',
-        stats: [
-          { label: 'Capacity', value: '100 MW' },
-          { label: 'CO₂ Saved', value: '80,000 tons/year' },
-          { label: 'Homes Powered', value: '30,000+' },
-          { label: 'Project Duration', value: '18 months' },
-        ],
-        quote:
-          'This project represents a major milestone in our region\'s transition to renewable energy. Pakar Ekosistem Indonesia\'s expertise made it possible.',
-        author: 'John Williams, City Energy Director',
-      };
+    const handleFilterChange = (newFilter: string) => {
+      if (newFilter === activeFilter) return;
+      setIsAnimating(true);
+      setTimeout(() => {
+        setActiveFilter(newFilter);
+        setIsAnimating(false);
+      }, 170);
+    };
+  
+    const filteredProjects =
+      activeFilter === 'All'
+        ? projects
+        : projects.filter((project) => project.category === activeFilter);
+  
+    //untuk contoh studi kasus besar
+    const featuredProject = {
+      image: 'https://images.unsplash.com/photo-1756511332583-99fc0d4bf7cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHBhbmVscyUyMGdyZWVuJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc3MDI5Njc4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      title: 'Mega Solar Park Project',
+      category: 'Renewable Energy',
+      description:
+        'Our largest project to date: a 100MW solar farm spanning 500 acres, providing clean energy to over 30,000 homes and businesses.',
+      stats: [
+        { label: 'Capacity', value: '100 MW' },
+        { label: 'CO₂ Saved', value: '80,000 tons/year' },
+        { label: 'Homes Powered', value: '30,000+' },
+        { label: 'Project Duration', value: '18 months' },
+      ],
+      quote:
+        'This project represents a major milestone in our region\'s transition to renewable energy. Pakar Ekosistem Indonesia\'s expertise made it possible.',
+      author: 'John Williams, City Energy Director',
+    };
+
     return (
-    <div>
-        <section className="bg-white border-b border-slate-200 py-6 sticky top-16 z-40">
+      <div>
+        <section className="bg-white border-b border-slate-200 py-6 sticky top-16 z-40 select-none">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 flex-wrap">
               <Filter className="w-5 h-5 text-slate-500" />
@@ -97,7 +72,7 @@ export function Projects() {
               {filters.map((filter) => (
                 <button
                   key={filter}
-                  onClick={() => setActiveFilter(filter)}
+                  onClick={() => handleFilterChange(filter)}
                   className={`px-4 py-2 rounded-lg font-medium transition-all ${
                     activeFilter === filter
                       ? 'bg-[#22c55e] text-white shadow-md'
@@ -111,47 +86,127 @@ export function Projects() {
           </div>
         </section>  
 
-        <section className="py-20 bg-slate-50">
+        {/* Section List Project */}
+        <section className="py-20 bg-slate-50 ">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all group cursor-pointer"
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <ImageWithFallback
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6">
-                      <button className="bg-white text-slate-900 px-6 py-2 rounded-lg font-semibold inline-flex items-center gap-2">
-                        View Details
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+            <div 
+              className={`transition-all duration-180 ease-in-out transform ${
+                isAnimating 
+                  ? 'opacity-20 scale-95 translate-y-4' 
+                  : 'opacity-100 scale-100 translate-y-0'
+              }`}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProjects.map((project, index) => (
+                  <div
+                    key={index}
+                    // 1. Fungsi klik untuk Mobile: Toggle buka/tutup kartu
+                    onClick={() => setActiveCard(activeCard === index ? null : index)}
+                    // 2. Reset state jika kursor keluar (opsional untuk perapian di desktop)
+                    onMouseLeave={() => setActiveCard(null)}
+                    className="relative h-[360px] bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-default"
+                  >
+                    <div className="absolute inset-0 w-full h-full">
+                      <ImageWithFallback
+                        src={project.image}
+                        alt={project.title}
+                        // Jika aktif (di HP) ATAU di-hover (di PC), gambar membesar
+                        className={`w-full h-full object-cover transition-transform duration-700 ${
+                          activeCard === index ? 'scale-110' : 'group-hover:scale-110'
+                        }`}
+                      />
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-[#22c55e] text-white px-3 py-1 rounded-full text-sm font-semibold">
+
+                    {/* Badge Kategori - Tetap terlihat */}
+                    <div className="absolute top-4 right-4 z-20">
+                      <span className="bg-[#22c55e]/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold shadow-sm">
                         {project.category}
                       </span>
                     </div>
+
+                    {/* Gradient Bawah (Selalu ada agar judul terbaca) */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent z-10"></div>
+
+                    {/* Overlay Hitam Penuh saat Hover / Tap */}
+                    <div 
+                      className={`absolute inset-0 bg-slate-900/80 transition-opacity duration-300 z-10 backdrop-blur-sm ${
+                        activeCard === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`}
+                    ></div>
+
+                    {/* Konten Text */}
+                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+                      
+                      {/* Judul: Bergeser ke atas saat Hover / Tap */}
+                      <h3 
+                        className={`text-xl font-bold text-white mb-2 transform transition-all duration-500 ease-in-out ${
+                          activeCard === index ? '-translate-y-4' : 'group-hover:-translate-y-4'
+                        }`}
+                      >
+                        {project.title}
+                      </h3>
+
+                      {/* Detail: Muncul dari bawah saat Hover / Tap */}
+                      <div 
+                        className={`transform transition-all duration-500 ease-in-out delay-75 overflow-hidden ${
+                          activeCard === index 
+                            ? 'max-h-[200px] opacity-100 translate-y-0' 
+                            : 'max-h-0 opacity-0 translate-y-6 group-hover:max-h-[200px] group-hover:opacity-100 group-hover:translate-y-0'
+                        }`}
+                      >
+                        <p className="text-slate-200 text-sm mb-4 line-clamp-3">
+                          {project.detail}
+                        </p>
+
+                        <div className="space-y-2">
+                          <div className="flex items-center text-slate-300 text-xs">
+                            <MapPin className="w-4 h-4 mr-2 text-[#22c55e]" />
+                            {project.tempat}
+                          </div>
+                          <div className="flex items-center text-slate-300 text-xs">
+                            <Calendar className="w-4 h-4 mr-2 text-[#22c55e]" />
+                            {project.waktu}
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">{project.title}</h3>
-                    <p className="text-slate-600 text-sm">{project.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>  
-            {filteredProjects.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-slate-600 text-lg">No projects found for this category.</p>
+                ))}
               </div>
-            )}
+              
+              {filteredProjects.length === 0 && (
+                <div className="w-full h-[360px] py-16 flex flex-col items-center justify-center bg-white rounded-2xl border-2 border-dashed border-slate-200">
+
+                  {/* Lingkaran Ikon */}
+                  <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-2">
+                    <FolderOpen className="w-8 h-8 text-slate-400" />
+                  </div>
+
+                  {/* Teks Profesional */}
+                  <h3 className="text-xl font-bold text-slate-800 mb-2">
+                    Portofolio Sedang Diperbarui
+                  </h3>
+                  <p className="text-slate-500 text-center max-w-md text-sm md:text-base">
+                    Kami terus mengembangkan solusi terbaik. Dokumentasi proyek untuk kategori ini akan segera kami tampilkan.
+                  </p>
+
+                  {/* Tombol Opsional untuk reset filter */}
+                  <button 
+                    onClick={() => setActiveFilter('All')}
+                    className="mt-6 text-[#22c55e] font-medium hover:text-[#16a34a] transition-colors underline-offset-4 hover:underline"
+                  >
+                    Lihat Semua Portofolio
+                  </button>
+
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
+        {/* Featured Case Study */}
+        {/*
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -203,6 +258,7 @@ export function Projects() {
             </div>
           </div>
         </section>
-    </div>
+        */}
+      </div>
     )
 }

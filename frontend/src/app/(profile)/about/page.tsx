@@ -60,23 +60,42 @@ export default function AboutPage() {
   const values = [
     {
       icon: <Leaf className="w-10 h-10 text-[#22c55e]" />,
-      title: 'Sustainability',
-      description: 'PEI sangat menghargai praktik etika dan lingkungan. Kami mengelola bisnis kami untuk melindungi lingkungan dan melestarikan sumber daya alam bumi, baik untuk generasi sekarang maupun yang akan datang.',
+      title: 'Keberlanjutan',
+      description: 'Kami berkomitmen penuh pada praktik etis dan ramah lingkungan untuk melestarikan sumber daya alam bagi generasi masa depan melalui operasional bisnis yang bertanggung jawab.',
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-[#3b82f6]" />,
-      title: 'Innovation',
-      description: 'PEI mendukung dan mendorong penelitian dan pengembangan dalam hal kemajuan teknologi dan lingkungan terbaru untuk memastikan bahwa inovasi hari ini adalah solusi konvensional masa depan.',
+      title: 'Inovasi Terdepan',
+      description: 'PEI terus mendorong riset dan pengembangan teknologi terbaru guna memastikan bahwa solusi inovatif kami hari ini menjadi standar kualitas di masa depan.',
     },
     {
       icon: <Users className="w-10 h-10 text-[#22c55e]" />,
-      title: 'Collaboration',
-      description: 'Working together with clients to achieve shared goals.',
+      title: 'Kolaborasi Sinergis',
+      description: 'Kami bekerja sama secara erat dengan klien sebagai mitra strategis, menggabungkan visi dan keahlian untuk mencapai tujuan bersama secara efektif.',
     },
     {
       icon: <Target className="w-10 h-10 text-[#3b82f6]" />,
-      title: 'Excellence',
-      description: 'Delivering the highest quality in every aspect of our work.',
+      title: 'Kualitas Unggul',
+      description: 'Memberikan hasil dengan standar kualitas tertinggi dalam setiap aspek pekerjaan adalah prioritas utama kami untuk memastikan kepuasan dan kepercayaan Anda.',
+    },
+  ];
+
+  const missions = [
+    {
+      title: 'Solusi Inovatif',
+      description: 'Menghadirkan teknologi dan metode pengelolaan limbah yang efisien serta ramah lingkungan bagi setiap sektor industri.',
+    },
+    {
+      title: 'Kemitraan Strategis',
+      description: 'Membangun kolaborasi yang mendalam dengan klien untuk memberikan solusi yang tepat guna dan sesuai regulasi.',
+    },
+    {
+      title: 'Pemberdayaan Sumber Daya',
+      description: 'Terus meningkatkan kompetensi tim ahli agar selalu relevan dengan perkembangan standar lingkungan global.',
+    },
+    {
+      title: 'Edukasi & Kesadaran',
+      description: 'Mendorong kesadaran masyarakat dan pelaku industri akan pentingnya tata kelola limbah yang bertanggung jawab.',
     },
   ];
 
@@ -86,26 +105,24 @@ export default function AboutPage() {
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwdGVhbSUyMGxhYm9yYXRvcnl8ZW58MXx8fHwxNzcwMjk2Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Environmental team in laboratory"
+            src="/images/about_us.jpeg"
+            alt="Tentang Kami"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/40" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-            INTEGRATED ENVIRONMENTAL SERVICES
+          <h1 className="text-2xl sm:text-5xl font-bold mb-6">
+            Pakar Ekosistem Indonesia
           </h1>
-          <p className="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-md sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
             PT Pakar Ekosistem Indonesia (PEI) adalah perusahaan penyedia layanan pengelolaan lingkungan 
             terpadu yang didirikan pada 11 Mei 2021 oleh para pakar berpengalaman belasan tahun. Berfokus 
             pada teknologi berkelanjutan, perusahaan ini mengintegrasikan layanan konsultasi, engineering, 
             perencanaan proyek, hingga pengujian dan monitoring lingkungan. Dengan filosofi pelayanan satu 
             pintu, PEI berkomitmen memberikan solusi profesional yang selaras dengan prinsip-prinsip 
             pengelolaan lingkungan hidup yang terukur dan berkelanjutan.
-
-            
           </p>
         </div>
       </section>
@@ -113,22 +130,39 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-gradient-to-br from-[#22c55e] to-[#16a34a] p-8 rounded-2xl text-white">
-              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-lg leading-relaxed">
+          {/* Ubah grid dari 2 kolom menjadi 5 kolom di layar besar (lg) */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            
+            {/* Visi - Mengambil 2 kolom */}
+            <div className="lg:col-span-2 bg-gradient-to-br from-[#30CF5D] to-[#7BE097] p-8 sm:p-10 rounded-3xl text-white flex flex-col justify-center shadow-lg">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-6">Visi</h3>
+              <p className="text-2xl sm:text-xl leading-relaxed font-light italic">
                 &ldquo;Menjadi mitra terdepan dalam solusi pengelolaan limbah berkelanjutan untuk menciptakan masa depan lingkungan yang lebih bersih dan sehat.&rdquo;
               </p>
             </div>
-            <div className="bg-gradient-to-br from-[#3b82f6] to-[#2563eb] p-8 rounded-2xl text-white">
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-lg leading-relaxed">
-                <strong>1.Solusi Inovatif:</strong> Menghadirkan teknologi dan metode pengelolaan limbah yang efisien serta ramah lingkungan bagi setiap sektor industri.<br />
-                <strong>2.Kemitraan Strategis:</strong> Membangun kolaborasi yang mendalam dengan klien untuk memberikan solusi yang tepat guna dan sesuai regulasi.<br />
-                <strong>3.Pemberdayaan Sumber Daya:</strong> Terus meningkatkan kompetensi tim ahli agar selalu relevan dengan perkembangan standar lingkungan global.<br />
-                <strong>4.Edukasi & Kesadaran:</strong> Mendorong kesadaran masyarakat dan pelaku industri akan pentingnya tata kelola limbah yang bertanggung jawab.<br />
-              </p>
+
+            {/* Misi - Mengambil 3 kolom */}
+            <div className="lg:col-span-3 bg-gradient-to-br from-[#2466AE] to-[#2B7DD4] p-8 sm:p-10 rounded-3xl text-white shadow-lg">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-8">Misi</h3>
+              <div className="flex flex-col gap-4">
+                {missions.map((misi, index) => (
+                  // Efek Card transparan di dalam gradient
+                  <div 
+                    key={index} 
+                    className="flex flex-col sm:flex-row gap-4 items-start bg-blue-500/15 p-5 rounded-2xl border border-white/10 backdrop-blur-sm transition-all hover:bg-blue-200/10"
+                  >
+                    {/* Konten Teks */}
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">{misi.title}</h4>
+                      <p className="text-white/90 text-sm sm:text-base leading-relaxed">
+                        {misi.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -137,7 +171,7 @@ export default function AboutPage() {
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-12 text-center">
-            Our Core Values
+            Mengapa Bermitra dengan PEI?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
@@ -154,7 +188,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
@@ -195,9 +229,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Certifications */}
+      {/*
       <section className="py-20 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -222,8 +257,10 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* CTA */}
+      {/*
       <section className="py-20 bg-gradient-to-r from-[#22c55e] to-[#16a34a] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
@@ -242,6 +279,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      */}
     </div>
   );
 }

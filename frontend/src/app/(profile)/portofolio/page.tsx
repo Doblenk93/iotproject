@@ -1,19 +1,29 @@
-import { ArrowRight } from 'lucide-react';
 import { Projects } from '@/components/Projects';
+import { ImageWithFallback } from '@/components/ImageWithFallback';
 
 export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative text-white py-20 overflow-hidden min-h-[60vh]">
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src="/images/PengolahanLimbahGenerated.jpg"
+            alt="Pengolahan Limbah Industri"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50" />
+        </div>
+
+        {/* Content Container */}
+        <div className="absolute inset-0 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col justify-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-            Our Projects: Real Impact in Environment & Electrical
+            Proyek Kami: Solusi Lingkungan yang Terpercaya
           </h1>
           <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
-            Explore our portfolio of successful projects that demonstrate our commitment 
-            to sustainability and technical excellence.
+            Jelajahi portofolio proyek kami yang mencakup pengolahan limbah, pemantauan lingkungan, dan solusi berkelanjutan lainnya yang telah kami implementasikan.
           </p>
         </div>
       </section>
@@ -22,6 +32,7 @@ export default function PortfolioPage() {
       <Projects />
 
       {/* CTA */}
+      {/*
       <section className="py-20 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
@@ -36,6 +47,7 @@ export default function PortfolioPage() {
           </button>
         </div>
       </section>
+      */}
     </div>
   );
 }
