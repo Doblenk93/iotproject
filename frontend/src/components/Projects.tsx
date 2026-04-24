@@ -28,6 +28,30 @@ export function Projects() {
         tempat: 'Cirebon, Jawa Barat',
         waktu: 'Maret 2024 - April 2024',
       },
+      {
+        image: '/images/AerasiMBR.jpeg',
+        title: 'Aerasi MBR: Advanced Wastewater Treatment',
+        category: 'Environmental',
+        detail: 'Penerapan teknologi aerasi MBR untuk meningkatkan efisiensi pengolahan limbah cair di fasilitas pengolahan air limbah.',
+        tempat: 'Cirebon, Jawa Barat',
+        waktu: 'Maret 2024 - April 2024',
+      },
+      {
+        image: '/images/screw_press_agrenesia_bogor.jpeg',
+        title: 'Screw Press Agrenesia Bogor: Efficient Sludge Dewatering',
+        category: 'Environmental',
+        detail: 'Implementasi teknologi screw press untuk dewatering lumpur di fasilitas pengolahan limbah cair Agrenesia, Bogor.',
+        tempat: 'Bogor, Jawa Barat',
+        waktu: 'Maret 2024 - April 2024',
+      },
+      {
+        image: '/images/Optimalisasi_panel_listrik_wwtp_agrenesia_medan.jpeg',
+        title: 'Optimalisasi Panel Listrik WWTP Agrenesia Medan: Energy Efficiency',
+        category: 'Environmental',
+        detail: 'Optimalisasi panel listrik untuk meningkatkan efisiensi energi di fasilitas pengolahan limbah cair Agrenesia, Medan.',
+        tempat: 'Medan, Sumatera Utara',
+        waktu: 'Juni 2024 - Juli 2024',
+      },
     ];
     
     const handleFilterChange = (newFilter: string) => {
