@@ -47,7 +47,7 @@ export function Projects() {
       {
         image: '/images/Optimalisasi_panel_listrik_wwtp_agrenesia_medan.jpeg',
         title: 'Optimalisasi Panel Listrik WWTP Agrenesia Medan: Energy Efficiency',
-        category: 'Environmental',
+        category: 'Electrical',
         detail: 'Optimalisasi panel listrik untuk meningkatkan efisiensi energi di fasilitas pengolahan limbah cair Agrenesia, Medan.',
         tempat: 'Medan, Sumatera Utara',
         waktu: 'Juni 2024 - Juli 2024',
