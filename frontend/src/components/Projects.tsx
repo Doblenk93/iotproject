@@ -14,17 +14,17 @@ export function Projects() {
     const projects = [
       {
         image: '/images/DKI_Cirebon_marikangen_(STP).jpeg',
-        title: 'STP Marikangen Cirebon: Wastewater Treatment Excellence',
+        title: 'STP Marikangen DKI Cirebon: Wastewater Treatment Excellence',
         category: 'Environmental',
-        detail: 'Instalasi sistem STP untuk mengolah limbah cair industri di kawasan Marikangen, Cirebon.',
+        detail: 'Instalasi sistem STP untuk mengolah limbah cair industri di PT Dharma Kyungshin Indonesia (DKI), Cirebon.',
         tempat: 'Cirebon, Jawa Barat',
         waktu: 'Okt 2023 - Jan 2024',
       },
       {
         image: '/images/DKI_Cirebon_wadas_(STP).jpeg',
-        title: 'STP Wadas Cirebon: Sustainable Waste Management',
+        title: 'STP Wadas DKI Cirebon: Sustainable Waste Management',
         category: 'Environmental',
-        detail: 'Pembangunan dan optimasi STP untuk pengolahan limbah cair di kawasan Wadas, Cirebon.',
+        detail: 'Pembangunan dan optimasi STP untuk pengolahan limbah cair di PT Dharma Kyungshin Indonesia (DKI), Cirebon.',
         tempat: 'Cirebon, Jawa Barat',
         waktu: 'Maret 2024 - April 2024',
       },
