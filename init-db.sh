@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    -- Buat Database pakai variabel biar konsisten
+    CREATE DATABASE $DB_STRAPI_NAME;
+    
+    -- Buat User
+    CREATE USER $DB_STRAPI_USER WITH PASSWORD '$DB_STRAPI_PASS';
+    
+    -- Grant privileges
+    GRANT ALL PRIVILEGES ON DATABASE $DB_STRAPI_NAME TO $DB_STRAPI_USER;
+EOSQL
+
+# Pindah database untuk setting privilege public schema
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$DB_STRAPI_NAME" <<-EOSQL
+    GRANT ALL PRIVILEGES ON SCHEMA public TO $DB_STRAPI_USER;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO $DB_STRAPI_USER;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO $DB_STRAPI_USER;
+EOSQL

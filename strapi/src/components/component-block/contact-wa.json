@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_component_block_contact_was",
+  "info": {
+    "displayName": "Contact WA",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Phone": {
+      "type": "customField",
+      "customField": "plugin::strapi-phone-validator-5.phone",
+      "options": {
+        "country": "id"
+      },
+      "required": true
+    },
+    "defaultMessage": {
+      "type": "text",
+      "default": "Permisi..., saya ingin bertanya mengenai...."
+    }
+  },
+  "config": {}
+}

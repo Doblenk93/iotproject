@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_component_block_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "Platform": {
+      "type": "customField",
+      "customField": "plugin::advanced-fields.enumeration",
+      "options": {
+        "minChoices": 1,
+        "maxChoices": 1,
+        "enumOptions": "youtube|YouTube\ntiktok|TikTok\ninstagram|Instagram\nfacebook|Facebook",
+        "fieldNote": ""
+      },
+      "required": true
+    },
+    "Username": {
+      "type": "string",
+      "required": true
+    },
+    "Url": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

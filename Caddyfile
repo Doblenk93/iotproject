@@ -5,3 +5,7 @@ mqtt.pakarekosistemindonesia.com {
 www.pakarekosistemindonesia.com {
     reverse_proxy frontend:3000
 }
+
+admin.pakarekosistemindonesia.com {
+    reverse_proxy strapi:1337
+}

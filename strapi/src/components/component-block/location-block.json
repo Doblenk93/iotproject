@@ -1,0 +1,59 @@
+{
+  "collectionName": "components_component_block_location_blocks",
+  "info": {
+    "displayName": "Location",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {
+    "City": {
+      "type": "string",
+      "required": false
+    },
+    "Province": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Aceh",
+        "Bali",
+        "Banten",
+        "Bengkulu",
+        "DI Yogyakarta",
+        "DKI Jakarta",
+        "Gorontalo",
+        "Jambi",
+        "Jawa Barat",
+        "Jawa Tengah",
+        "Jawa Timur",
+        "Kalimantan Barat",
+        "Kalimantan Selatan",
+        "Kalimantan Tengah",
+        "Kalimantan Timur",
+        "Kalimantan Utara",
+        "Kepulauan Bangka Belitung",
+        "Kepulauan Riau",
+        "Lampung",
+        "Maluku",
+        "Maluku Utara",
+        "Nusa Tenggara Barat",
+        "Nusa Tenggara Timur",
+        "Papua",
+        "Papua Barat",
+        "Papua Barat Daya",
+        "Papua Pegunungan",
+        "Papua Selatan",
+        "Papua Tengah",
+        "Riau",
+        "Sulawesi Barat",
+        "Sulawesi Selatan",
+        "Sulawesi Tengah",
+        "Sulawesi Tenggara",
+        "Sulawesi Utara",
+        "Sumatera Barat",
+        "Sumatera Selatan",
+        "Sumatera Utara"
+      ]
+    }
+  },
+  "config": {}
+}

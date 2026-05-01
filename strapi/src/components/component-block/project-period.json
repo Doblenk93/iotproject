@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_component_block_project_periods",
+  "info": {
+    "displayName": "Project Period",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "isCurrentProject": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

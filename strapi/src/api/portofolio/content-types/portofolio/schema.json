@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "portofolios",
+  "info": {
+    "singularName": "portofolio",
+    "pluralName": "portofolios",
+    "displayName": "Portofolio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Environmental",
+        "Electrical"
+      ]
+    },
+    "Description": {
+      "type": "blocks",
+      "required": true
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "Location": {
+      "type": "component",
+      "component": "component-block.location-block",
+      "repeatable": false,
+      "required": true
+    },
+    "Timestamp": {
+      "type": "component",
+      "component": "component-block.project-period",
+      "repeatable": false,
+      "required": true
+    }
+  }
+}

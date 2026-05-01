@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_component_block_item_with_icons",
+  "info": {
+    "displayName": "Item with Icons",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "IconName": {
+      "type": "enumeration",
+      "required": true,
+      "default": "Leaf",
+      "enum": [
+        "Leaf",
+        "Lightbulb",
+        "Zap"
+      ]
+    },
+    "Title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

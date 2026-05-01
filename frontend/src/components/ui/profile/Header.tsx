@@ -6,7 +6,11 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 
-export function Header() {
+interface HeaderProps {
+  data: any;
+}
+
+export function Header({ data }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname(); // Hook untuk tahu kita lagi di halaman mana
 

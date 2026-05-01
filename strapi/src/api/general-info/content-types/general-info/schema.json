@@ -1,0 +1,53 @@
+{
+  "kind": "singleType",
+  "collectionName": "general_infos",
+  "info": {
+    "singularName": "general-info",
+    "pluralName": "general-infos",
+    "displayName": "General Info"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CompanyLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "CompanyName": {
+      "type": "string",
+      "required": true
+    },
+    "Tagline": {
+      "type": "text"
+    },
+    "Address": {
+      "type": "text",
+      "required": true
+    },
+    "Email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "Contacts": {
+      "type": "component",
+      "component": "component-block.contact-wa",
+      "repeatable": true
+    },
+    "Socials": {
+      "type": "component",
+      "component": "component-block.social-link",
+      "repeatable": true
+    },
+    "BussinessHours": {
+      "type": "component",
+      "component": "component-block.operating-hours",
+      "repeatable": false
+    }
+  }
+}

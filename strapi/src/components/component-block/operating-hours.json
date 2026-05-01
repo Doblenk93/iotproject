@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_component_block_operating_hours",
+  "info": {
+    "displayName": "Operating Hours"
+  },
+  "options": {},
+  "attributes": {
+    "WorkingDays": {
+      "type": "customField",
+      "customField": "plugin::advanced-fields.input",
+      "required": true,
+      "options": {
+        "placeholder": "Hari Kerja: 8:00 AM - 6:00 PM"
+      }
+    },
+    "Holidays": {
+      "type": "customField",
+      "customField": "plugin::advanced-fields.input",
+      "required": true,
+      "options": {
+        "placeholder": "Hari Libur Nasional: Tutup"
+      }
+    }
+  },
+  "config": {}
+}

@@ -7,6 +7,17 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ik.imagekit.io', // Domain ImageKit abang
+        pathname: '/**',
+      },
+      {
         protocol: 'https',
         hostname: 'images.unsplash.com',
         // port: '',
@@ -14,6 +25,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  cacheComponents: true,
 };
 
 export default nextConfig;

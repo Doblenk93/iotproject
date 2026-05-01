@@ -3,6 +3,7 @@
 //import { useState } from 'react';
 //import Link from 'next/link';
 import { Youtube, Music2, Instagram, Mail, Phone, MapPin, /*Send*/ } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export function Footer() {
   /*const [email, setEmail] = useState('');
@@ -17,6 +18,11 @@ export function Footer() {
     }
   };
   */
+  const [year, setYear] = useState(0);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
@@ -101,7 +107,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 pt-8 flex items-center justify-center text-xs text-slate-500">
           <p className="text-center">
-            &copy; {new Date().getFullYear()} Pakar Ekosistem Indonesia. All rights reserved.
+            &copy; {year} Pakar Ekosistem Indonesia. All rights reserved.
           </p>
         </div>
       </div>

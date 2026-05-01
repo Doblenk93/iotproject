@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "portofolio_details",
+  "info": {
+    "singularName": "portofolio-detail",
+    "pluralName": "portofolio-details",
+    "displayName": "Portofolio Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Background": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "PageH1": {
+      "type": "string"
+    },
+    "H1Detail": {
+      "type": "text"
+    }
+  }
+}
