@@ -33,6 +33,9 @@ COPY --from=builder /srv/app/dist ./
 # Copy public
 COPY --from=builder /srv/app/public ./public
 
+# Copy favicon so Strapi favicon middleware can serve it from /srv/app/favicon.png
+COPY --from=builder /srv/app/favicon.png ./
+
 # Copy package.json
 COPY --from=builder /srv/app/package*.json ./
 
