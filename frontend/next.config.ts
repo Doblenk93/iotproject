@@ -14,14 +14,17 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'admin.pakarekosistemindonesia.com',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ik.imagekit.io', // Domain ImageKit abang
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        // port: '',
-        // pathname: '/**',
       },
     ],
   },

@@ -135,6 +135,7 @@ services:
     volumes:
       - ./strapi/.cache:/srv/app/.cache
       - ./strapi/public/uploads:/srv/app/public/uploads
+      - ./strapi/tmp:/srv/app/tmp
     depends_on:
       database:
         condition: service_healthy

@@ -33,23 +33,23 @@ export function Header({ data }: HeaderProps) {
 
   const { CompanyName, CompanyLogo } = data || {};
 
+  const defaultStrapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+
   // Extract logo URL from nested Strapi structure
   // CompanyLogo can be: { id, attributes: { url, ... } } or { url }
   const logoUrl = (() => {
     if (!CompanyLogo) return '/favicon.ico';
-    
-    // Try nested structure first (Strapi populated data)
+
+    const normalize = (url: string) => url.startsWith('http') ? url : `${defaultStrapiUrl}${url}`;
+
     if (CompanyLogo.attributes?.url) {
-      const url = CompanyLogo.attributes.url;
-      return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+      return normalize(CompanyLogo.attributes.url);
     }
-    
-    // Try direct url property
+
     if (CompanyLogo.url) {
-      const url = CompanyLogo.url;
-      return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+      return normalize(CompanyLogo.url);
     }
-    
+
     return '/favicon.ico';
   })();
 
