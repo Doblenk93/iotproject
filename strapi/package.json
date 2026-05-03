@@ -16,10 +16,11 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.43.0",
-    "@strapi/plugin-users-permissions": "5.43.0",
+    "@strapi/plugin-users-permissions": "^5.43.0",
     "@strapi/strapi": "5.43.0",
     "@webbycrown/advanced-fields": "^1.0.9",
     "dotenv": "^17.4.2",
+    "fluent-ffmpeg": "^2.1.3",
     "pg": "8.20.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -27,9 +28,11 @@
     "strapi-phone-validator-5": "^1.0.0",
     "strapi-plugin-imagekit": "^1.0.2",
     "strapi-provider-email-resend": "^1.0.4",
+    "strapi-provider-upload-imagekit": "^5.11.11",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@types/fluent-ffmpeg": "^2.1.28",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

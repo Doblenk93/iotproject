@@ -182,15 +182,15 @@ export const GENERAL_INFO_QUERIES = {
     fields: ['CompanyName', 'Email', 'Address'],
   }),
 
-  // For header: logo, nama, email
+  // For header: logo, nama
   header: buildQuery({
     populate: ['CompanyLogo'],
-    fields: ['CompanyName', 'Email'],
+    fields: ['CompanyName'],
   }),
 
-  // For footer: semua info
+  // For footer
   footer: buildQuery({
-    populate: ['CompanyLogo', 'Contacts', 'Socials', 'BussinessHours'],
+    populate: ['Contacts', 'Socials'],
     fields: [
       'CompanyName',
       'Email',
@@ -284,31 +284,87 @@ export const CONTACT_PAGE_QUERIES = {
  * - Title, Type, Description, Image, Location, Timestamp
  */
 export const PORTFOLIO_QUERIES = {
-  // Fungsi untuk list dengan pagination & deskripsi opsional
-  paginatedList: (page = 1, pageSize = 12, includeDesc = false) => 
+  /**
+   * Featured portfolios (untuk homepage showcase)
+   * Sorted by pinnedOrder, limited to small number
+   */
+  featured: (limit = 3) =>
     buildQuery({
-      populate: ['Image'],
-      fields: includeDesc ? ['Title', 'Type', 'Description'] : ['Title', 'Type'],
-      sort: ['createdAt:desc'],
+      populate: ['Image', 'Location', 'Timestamp'],
+      fields: ['Title', 'Type', 'isFeatured', 'pinnedOrder'],
+      filters: {
+        isFeatured: {
+          $eq: true,
+        },
+      },
+      sort: ['pinnedOrder:asc', 'createdAt:desc'],
+      pagination: {
+        page: 1,
+        pageSize: limit,
+      },
+    }),
+
+  /**
+   * List dengan pagination & full data untuk modal
+   */
+  paginatedList: (page = 1, pageSize = 12, includeDesc = true) => 
+    buildQuery({
+      populate: ['Image', 'Location', 'Timestamp'],
+      fields: ['Title', 'Type', 'Description', 'isFeatured', 'pinnedOrder'],
+      // Urutan: Featured dulu, lalu urutan pin, baru tanggal terbaru
+      sort: [
+        'isFeatured:desc', 
+        'pinnedOrder:asc', 
+        'createdAt:desc'
+      ],
       pagination: { page, pageSize },
     }),
 
-  // Fungsi untuk pencarian
+  /**
+   * Search portfolios dengan full details
+   */
   search: (searchTerm: string, page = 1, pageSize = 12) =>
     buildQuery({
-      populate: ['Image'],
-      fields: ['Title', 'Type'],
+      populate: ['Image', 'Location', 'Timestamp'],
+      fields: ['Title', 'Type', 'Description'],
       filters: {
         $or: [
           { Title: { $containsi: searchTerm } },
-          { Description: { $containsi: searchTerm } },
+          { Type: { $containsi: searchTerm } },
         ],
       },
       sort: ['createdAt:desc'],
       pagination: { page, pageSize },
     }),
-  
-  // List view: minimal data
+
+  /**
+   * Detail view: semua data untuk modal
+   */
+  detail: buildQuery({
+    populate: ['Image', 'Location', 'Timestamp'],
+    fields: ['Title', 'Type', 'Description', 'isFeatured'],
+  }),
+
+  /**
+   * Filter by type dengan pagination
+   */
+  filterByType: (type: string, page = 1, pageSize = 12) =>
+    buildQuery({
+      populate: ['Image', 'Location', 'Timestamp'],
+      fields: ['Title', 'Type', 'Description', 'isFeatured'],
+      filters: {
+        Type: {
+          $eq: type,
+        },
+      },
+      sort: ['isFeatured:desc', 'pinnedOrder:asc', 'createdAt:desc'],
+      pagination: { page, pageSize },
+    }),
+
+  /**
+   * DEPRECATED - untuk backwards compatibility
+   * Gunakan paginatedList() atau featured() sebagai gantinya
+   */
   list: buildQuery({
     populate: ['Image'],
     fields: ['Title', 'Type'],
@@ -319,7 +375,6 @@ export const PORTFOLIO_QUERIES = {
     },
   }),
 
-  // List dengan deskripsi singkat
   listWithDesc: buildQuery({
     populate: ['Image'],
     fields: ['Title', 'Type', 'Description'],
@@ -329,26 +384,6 @@ export const PORTFOLIO_QUERIES = {
       pageSize: 12,
     },
   }),
-
-  // Detail view: semua data
-  detail: buildQuery({
-    populate: ['Image', 'Location', 'Timestamp'],
-    sort: ['createdAt:desc'],
-  }),
-
-  // Filter by type (Environmental/Electrical)
-  filterByType: (type: string, page = 1, pageSize = 12) =>
-    buildQuery({
-      populate: ['Image'],
-      fields: ['Title', 'Type'],
-      filters: {
-        Type: {
-          $eq: type,
-        },
-      },
-      sort: ['createdAt:desc'],
-      pagination: { page, pageSize },
-    }),
 };
 
 /**

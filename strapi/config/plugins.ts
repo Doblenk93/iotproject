@@ -1,6 +1,24 @@
 import type { Core } from '@strapi/strapi';
 
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
+  upload: {
+    config: {
+      sizeLimit: 104857600,
+      tmpdir: process.cwd() + '/tmp',
+      security: {
+        // Validasi tipe file
+        fileFilter: {
+          allowedMimes: [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/webp',
+            'image/svg+xml',
+          ],
+        },
+      },
+    },
+  },
   imagekit: {
     enabled: true,
     config: {

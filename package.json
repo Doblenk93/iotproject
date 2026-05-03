@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@webbycrown/advanced-fields": "^1.0.9",
-    "strapi-phone-validator-5": "^1.0.0",
-    "strapi-plugin-imagekit": "^1.0.2",
-    "strapi-provider-email-resend": "^1.0.4"
-  }
-}

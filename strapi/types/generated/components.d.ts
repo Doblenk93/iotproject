@@ -193,17 +193,10 @@ export interface ComponentBlockSocialLink extends Struct.ComponentSchema {
     icon: 'globe';
   };
   attributes: {
-    Platform: Schema.Attribute.JSON &
-      Schema.Attribute.Required &
-      Schema.Attribute.CustomField<
-        'plugin::advanced-fields.enumeration',
-        {
-          enumOptions: 'youtube|YouTube\ntiktok|TikTok\ninstagram|Instagram\nfacebook|Facebook';
-          fieldNote: '';
-          maxChoices: 1;
-          minChoices: 1;
-        }
-      >;
+    Platform: Schema.Attribute.Enumeration<
+      ['YouTube', 'TikTok', 'Facebook', 'Instagram']
+    > &
+      Schema.Attribute.Required;
     Url: Schema.Attribute.String & Schema.Attribute.Required;
     Username: Schema.Attribute.String & Schema.Attribute.Required;
   };

@@ -41,7 +41,9 @@ export function useStrapiData<T>(
       setError(null);
 
       const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
-      const response = await fetch(`${strapiUrl}/api${url}`);
+      const response = await fetch(`${strapiUrl}/api${url}`, {
+        cache: 'no-store', // Disable browser cache untuk client-side fetching
+      });
 
       if (!response.ok) {
         throw new Error(`Failed to fetch from Strapi: ${response.statusText}`);

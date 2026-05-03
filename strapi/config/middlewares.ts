@@ -1,4 +1,5 @@
 import type { Core } from '@strapi/strapi';
+import path from 'path';
 
 const config: Core.Config.Middlewares = [
   'strapi::logger',
@@ -40,7 +41,20 @@ const config: Core.Config.Middlewares = [
   },
   'strapi::poweredBy',
   'strapi::query',
-  'strapi::body',
+  {
+    name: 'strapi::body',
+    config: {
+      formLimit: "256mb",
+      jsonLimit: "256mb",
+      textLimit: "256mb",
+      formidable: {
+        maxFileSize: 250 * 1024 * 1024,
+        // PINDAHKAN KE SINI
+        uploadDir: path.join(process.cwd(), '/tmp'),
+        keepExtensions: true,
+      },
+    },
+  },
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
@@ -52,6 +66,9 @@ const config: Core.Config.Middlewares = [
         'https://www.pakarekosistemindonesia.com',
         'https://pakarekosistemindonesia.com',
       ],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+      keepHeaderOnError: true,
       credentials: true,
     },
   }

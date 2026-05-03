@@ -7,15 +7,14 @@
   "options": {},
   "attributes": {
     "Platform": {
-      "type": "customField",
-      "customField": "plugin::advanced-fields.enumeration",
-      "options": {
-        "minChoices": 1,
-        "maxChoices": 1,
-        "enumOptions": "youtube|YouTube\ntiktok|TikTok\ninstagram|Instagram\nfacebook|Facebook",
-        "fieldNote": ""
-      },
-      "required": true
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "YouTube",
+        "TikTok",
+        "Facebook",
+        "Instagram"
+      ]
     },
     "Username": {
       "type": "string",

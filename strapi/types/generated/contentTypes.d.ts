@@ -622,7 +622,10 @@ export interface ApiPortofolioPortofolio extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Description: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    Image: Schema.Attribute.Media<'images' | 'videos'>;
+    isFeatured: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -634,6 +637,9 @@ export interface ApiPortofolioPortofolio extends Struct.CollectionTypeSchema {
       false
     > &
       Schema.Attribute.Required;
+    pinnedOrder: Schema.Attribute.Integer &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     Timestamp: Schema.Attribute.Component<
       'component-block.project-period',

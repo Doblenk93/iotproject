@@ -23,6 +23,26 @@
         "Electrical"
       ]
     },
+    "isFeatured": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "pinnedOrder": {
+      "type": "integer",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "isFeatured"
+            },
+            true
+          ]
+        }
+      },
+      "default": 0,
+      "unique": true
+    },
     "Description": {
       "type": "blocks",
       "required": true
@@ -32,7 +52,6 @@
       "multiple": false,
       "allowedTypes": [
         "images",
-        "files",
         "videos"
       ]
     },

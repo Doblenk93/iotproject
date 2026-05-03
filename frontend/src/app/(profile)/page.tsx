@@ -5,6 +5,8 @@ import {
   getHomePageData,
   getStrapiImageUrl,
 } from '@/services/strapiService';
+import { isVideo } from '@/utils/mediaHandler';
+import { VideoThumbnailExtractor } from '@/components/VideoThumbnailExtractor';
 
 export default async function HomePage() {
   let homePage: any = null;
@@ -17,8 +19,6 @@ export default async function HomePage() {
     homePage = data.homePage?.data || {};
     portfolios = data.portfolios?.data || [];
     testimonials = data.testimonials?.data || [];
-
-    console.log("portfolios Data:", portfolios);
   } catch (err) {
     console.error('Failed to load Strapi homepage data:', err);
   }
@@ -34,8 +34,8 @@ export default async function HomePage() {
   // Di JSON abang, field-nya namanya 'Capabilities', bukan 'services'
   const capabilitiesData = homePage?.Capabilities.ValuePoints || [];
 
-  const getIcon = (iconName: string[]) => {
-    const name = iconName?.[0]?.toLowerCase();
+  const getIcon = (iconName: string) => {
+    const name = iconName?.toLowerCase();
     switch (name) {
       case 'leaf': return <Leaf className="w-12 h-12 text-green-500" />;
       case 'zap': return <Zap className="w-12 h-12 text-blue-500" />;
@@ -117,11 +117,20 @@ export default async function HomePage() {
             {portfolios.map((p: any) => (
               <a key={p.id} href={`/portofolio/`} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <div className="h-48 w-full relative">
-                  <ImageWithFallback 
-                    src={getStrapiImageUrl(p.Image)} 
-                    alt={p.Title} 
-                    className="w-full h-full object-cover" 
-                  />
+                  {isVideo(p.Image) ? (
+                    <VideoThumbnailExtractor 
+                      videoUrl={getStrapiImageUrl(p.Image)} 
+                      timeOffset={0.1}
+                      className="w-full h-full object-cover"
+                      
+                    />
+                  ) : (
+                    <ImageWithFallback 
+                      src={getStrapiImageUrl(p.Image)} 
+                      alt={p.Title} 
+                      className="w-full h-full object-cover" 
+                    />
+                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold text-lg">{p.Title}</h3>

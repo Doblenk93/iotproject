@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import Image from 'next/image';
 
 interface HeaderProps {
   data: any;
@@ -12,15 +11,36 @@ interface HeaderProps {
 
 export function Header({ data }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname(); // Hook untuk tahu kita lagi di halaman mana
+  const pathname = usePathname();
 
   const navItems = [
     { name: 'Home', href: '/' },
-    /*{ name: 'Services', href: '/services' },*/
     { name: 'Portofolio', href: '/portofolio' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const { CompanyName, CompanyLogo } = data || {};
+
+  // Extract logo URL from nested Strapi structure
+  // CompanyLogo can be: { id, attributes: { url, ... } } or { url }
+  const logoUrl = (() => {
+    if (!CompanyLogo) return '/favicon.ico';
+    
+    // Try nested structure first (Strapi populated data)
+    if (CompanyLogo.attributes?.url) {
+      const url = CompanyLogo.attributes.url;
+      return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    }
+    
+    // Try direct url property
+    if (CompanyLogo.url) {
+      const url = CompanyLogo.url;
+      return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    }
+    
+    return '/favicon.ico';
+  })();
 
   const isActive = (path: string) => pathname === path;
 
@@ -37,16 +57,17 @@ export function Header({ data }: HeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
             >
               <div className="relative w-10 h-10 flex-shrink-0">
-                <Image 
-                  src="/favicon.ico" 
+                <img 
+                  src={logoUrl}
                   alt="PEI Logo" 
-                  width={40} 
-                  height={40} 
-                  className="rounded-lg object-contain"
+                  className="w-10 h-10 rounded-lg object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/favicon.ico';
+                  }}
                 />
               </div>
               <span className="text-sm lg:text-lg font-bold text-slate-900 leading-tight">
-               Pakar Ekosistem Indonesia
+                {CompanyName || 'Pakar Ekosistem Indonesia'}
              </span>
             </Link>
           </div>
