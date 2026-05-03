@@ -637,6 +637,10 @@ export interface ApiPortofolioPortofolio extends Struct.CollectionTypeSchema {
       false
     > &
       Schema.Attribute.Required;
+    MultipleMedia: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    OtherImages: Schema.Attribute.Media<'images' | 'videos', true>;
     pinnedOrder: Schema.Attribute.Integer &
       Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<0>;

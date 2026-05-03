@@ -97,6 +97,8 @@ export interface Portfolio {
   Description: BlockEditorContent; // Rich text
   Type: 'Environmental' | 'Electrical' | string;
   Image: StrapiImage; // Can be image or video
+  MultipleMedia?: boolean;
+  OtherImages?: StrapiImage[];
   Location?: PortfolioLocation;
   Timestamp?: PortfolioTimestamp;
   isFeatured?: boolean;

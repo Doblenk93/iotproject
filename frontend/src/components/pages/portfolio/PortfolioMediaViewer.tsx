@@ -7,17 +7,16 @@ import { isVideo, getVideoSourceUrl, getMediaThumbnail, getMediaDisplayUrl, getM
 import { ImageWithFallback } from '@/components/ImageWithFallback';
 
 interface PortfolioMediaViewerProps {
-  portfolio: Portfolio;
+  media: Portfolio['Image'];
 }
 
-export function PortfolioMediaViewer({ portfolio }: PortfolioMediaViewerProps) {
+export function PortfolioMediaViewer({ media }: PortfolioMediaViewerProps) {
   const [showVideo, setShowVideo] = useState(false);
-  const media = portfolio.Image;
   const isVideoMedia = isVideo(media);
   const videoSrc = getVideoSourceUrl(media);
   const thumbnail = getMediaThumbnail(media);
   const displayImage = getMediaDisplayUrl(media);
-  const altText = getMediaAltText(media, portfolio.Title);
+  const altText = getMediaAltText(media, media.name || 'Portfolio media');
 
   if (!isVideoMedia && showVideo) {
     setShowVideo(false);

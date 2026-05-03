@@ -6,6 +6,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
+const DEFAULT_STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://admin.pakarekosistemindonesia.com');
+
 interface UseStrapiFetchOptions {
   skip?: boolean;
   onError?: (error: Error) => void;
@@ -40,7 +42,7 @@ export function useStrapiData<T>(
       setLoading(true);
       setError(null);
 
-      const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+      const strapiUrl = DEFAULT_STRAPI_URL;
       const response = await fetch(`${strapiUrl}/api${url}`, {
         cache: 'no-store', // Disable browser cache untuk client-side fetching
       });
@@ -101,7 +103,7 @@ export function useStrapiPagination<T>(
         setLoading(true);
         setError(null);
 
-        const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+        const strapiUrl = DEFAULT_STRAPI_URL;
         const query = `${endpoint}?pagination[page]=${pageNum}&pagination[pageSize]=${pageSize}&populate=*`;
         const response = await fetch(`${strapiUrl}/api${query}`);
 

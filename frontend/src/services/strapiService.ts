@@ -18,7 +18,7 @@ import {
   TESTIMONIAL_QUERIES,
 } from '@/utils/queryBuilder';
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://admin.pakarekosistemindonesia.com');
 
 /**
  * Base fetch function dengan optimasi

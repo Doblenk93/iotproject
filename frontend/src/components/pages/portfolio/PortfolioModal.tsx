@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { X, MapPin, Calendar, FileText } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { Portfolio, getPortfolioDateRange } from '@/types/portfolio';
 import { PortfolioMediaViewer } from '@/components/pages/portfolio/PortfolioMediaViewer';
 import { RichTextRenderer } from '@/components/pages/portfolio/RichTextRenderer';
+import { getPortfolioDetail } from '@/services/strapiService';
+import { getMediaThumbnail } from '@/utils/mediaHandler';
 
 interface PortfolioModalProps {
   portfolio: Portfolio | null;
@@ -21,6 +23,48 @@ interface PortfolioModalProps {
  */
 export function PortfolioModal({ portfolio, isOpen, onClose }: PortfolioModalProps) {
   const [isClosing, setIsClosing] = useState(false);
+  const [selectedMedia, setSelectedMedia] = useState<Portfolio['Image'] | null>(portfolio?.Image ?? null);
+  const [detailPortfolio, setDetailPortfolio] = useState<Portfolio | null>(null);
+  const [isLoadingExtras, setIsLoadingExtras] = useState(false);
+
+  useEffect(() => {
+    if (portfolio) {
+      setSelectedMedia(portfolio.Image);
+      setDetailPortfolio(null);
+    }
+  }, [portfolio]);
+
+  useEffect(() => {
+    if (!isOpen || !portfolio) {
+      return;
+    }
+
+    let mounted = true;
+    setIsLoadingExtras(true);
+    setDetailPortfolio(null);
+
+    getPortfolioDetail(portfolio.documentId)
+      .then((result) => {
+        if (!mounted) return;
+        const data = result?.data;
+        if (data) {
+          setDetailPortfolio(data);
+          if (!selectedMedia) {
+            setSelectedMedia(data.Image);
+          }
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to fetch portfolio detail:', err);
+      })
+      .finally(() => {
+        if (mounted) setIsLoadingExtras(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [isOpen, portfolio]);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,6 +77,11 @@ export function PortfolioModal({ portfolio, isOpen, onClose }: PortfolioModalPro
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
+  if (!isOpen || !portfolio) return null;
+
+  const activePortfolio = detailPortfolio ?? portfolio;
+  const additionalImages = activePortfolio.OtherImages ?? [];
 
   const handleClose = () => {
     setIsClosing(true);
@@ -76,8 +125,44 @@ export function PortfolioModal({ portfolio, isOpen, onClose }: PortfolioModalPro
           
           {/* Media Player Container */}
           <div className="mb-8 rounded-xl overflow-hidden bg-slate-100 shadow-inner">
-            <PortfolioMediaViewer portfolio={portfolio} />
+            {selectedMedia ? (
+              <PortfolioMediaViewer media={selectedMedia} />
+            ) : null}
           </div>
+
+          {(activePortfolio.MultipleMedia && ((additionalImages.length ?? 0) > 0 || isLoadingExtras)) && (
+            <div className="mb-6">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <h4 className="text-sm font-semibold text-slate-700 uppercase tracking-[0.2em]">Galeri Tambahan</h4>
+                {isLoadingExtras && (
+                  <span className="text-xs text-slate-500">Memuat gambar tambahan...</span>
+                )}
+              </div>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                {[activePortfolio.Image, ...additionalImages].map((media, index) => {
+                  const thumb = getMediaThumbnail(media);
+                  const isActive = selectedMedia?.url === media.url;
+
+                  return (
+                    <button
+                      key={`${media.id}-${index}`}
+                      type="button"
+                      onClick={() => setSelectedMedia(media)}
+                      className={`overflow-hidden rounded-2xl border transition-all ${
+                        isActive ? 'border-green-600 shadow-sm' : 'border-slate-200'
+                      }`}
+                    >
+                      <img
+                        src={thumb}
+                        alt={media.alternativeText || media.name || portfolio.Title}
+                        className="w-full h-24 object-cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Quick Info Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 p-6 bg-slate-50 rounded-2xl border border-slate-100">

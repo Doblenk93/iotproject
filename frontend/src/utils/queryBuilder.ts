@@ -357,8 +357,8 @@ export const PORTFOLIO_QUERIES = {
    * Detail view: semua data untuk modal
    */
   detail: buildQuery({
-    populate: ['Image', 'Location', 'Timestamp'],
-    fields: ['Title', 'Type', 'Description', 'isFeatured'],
+    populate: ['Image', 'Location', 'Timestamp', 'OtherImages'],
+    fields: ['Title', 'Type', 'Description', 'isFeatured', 'MultipleMedia'],
   }),
 
   /**

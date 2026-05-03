@@ -54,6 +54,7 @@ export function PortfolioGrid() {
       }
 
       setPortfolios(response?.data || []);
+      console.log('Fetched portfolios:', response?.data);
       setTotalPages(response?.meta?.pagination?.pageCount || 1);
     } catch (err) {
       console.error('Failed to fetch portfolios:', err);

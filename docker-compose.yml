@@ -91,6 +91,8 @@ services:
       dockerfile: Dockerfile
       cache_from:
         - iotproject_frontend:latest
+      args:
+        NEXT_PUBLIC_STRAPI_API_URL: ${NEXT_PUBLIC_STRAPI_API_URL}
     image: iotproject_frontend:latest
     container_name: frontend
     ports:

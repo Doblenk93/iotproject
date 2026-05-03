@@ -47,9 +47,33 @@
       "type": "blocks",
       "required": true
     },
+    "MultipleMedia": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
     "Image": {
       "type": "media",
       "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "OtherImages": {
+      "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "MultipleMedia"
+            },
+            true
+          ]
+        }
+      },
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "videos"

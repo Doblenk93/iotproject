@@ -13,7 +13,7 @@ const SUPPORTED_VIDEO_FORMATS = ['video/mp4', 'video/webm', 'video/ogg', 'video/
 /**
  * Strapi server URL - ensure media URLs point to correct server
  */
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://admin.pakarekosistemindonesia.com');
 
 /**
  * Normalize media URL - convert relative paths to full URLs pointing to Strapi server
