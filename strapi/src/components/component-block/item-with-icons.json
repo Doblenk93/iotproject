@@ -9,10 +9,23 @@
     "IconName": {
       "type": "enumeration",
       "required": true,
-      "default": "Leaf",
+      "default": "Award",
       "enum": [
+        "Award",
+        "Briefcase",
+        "CheckCircle",
+        "Droplets",
+        "Factory",
+        "Globe",
+        "Handshake",
+        "HardHat",
         "Leaf",
         "Lightbulb",
+        "Recycle",
+        "Settings",
+        "Shield",
+        "Target",
+        "Users",
         "Zap"
       ]
     },

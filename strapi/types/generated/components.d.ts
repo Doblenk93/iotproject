@@ -71,9 +71,28 @@ export interface ComponentBlockItemWithIcons extends Struct.ComponentSchema {
   };
   attributes: {
     Description: Schema.Attribute.Text & Schema.Attribute.Required;
-    IconName: Schema.Attribute.Enumeration<['Leaf', 'Lightbulb', 'Zap']> &
+    IconName: Schema.Attribute.Enumeration<
+      [
+        'Award',
+        'Briefcase',
+        'CheckCircle',
+        'Droplets',
+        'Factory',
+        'Globe',
+        'Handshake',
+        'HardHat',
+        'Leaf',
+        'Lightbulb',
+        'Recycle',
+        'Settings',
+        'Shield',
+        'Target',
+        'Users',
+        'Zap',
+      ]
+    > &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Leaf'>;
+      Schema.Attribute.DefaultTo<'Award'>;
     Title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;

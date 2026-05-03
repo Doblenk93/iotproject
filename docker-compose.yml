@@ -1,15 +1,15 @@
 services:
-  mqtt:
-    image: eclipse-mosquitto:latest
-    container_name: mqtt
-    ports:
-      - "1883:1883"
-      - "9001:9001"
-    volumes:
-      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
-    networks:
-      - iot-network
-    restart: unless-stopped
+  #mqtt:
+  #  image: eclipse-mosquitto:latest
+  #  container_name: mqtt
+  #  ports:
+  #    - "1883:1883"
+  #    - "9001:9001"
+  #  volumes:
+  #    - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+  #  networks:
+  #    - iot-network
+  #  restart: unless-stopped
 
   caddy:
     image: caddy:latest
@@ -26,7 +26,10 @@ services:
     networks:
       - iot-network
     depends_on:
-      - mqtt
+      # - mqtt
+      - frontend
+      - strapi
+      - database
 
   database:
     image: timescale/timescaledb:latest-pg14
@@ -53,34 +56,34 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      cache_from:
-        - iotproject_backend:latest
-    image: iotproject_backend:latest
-    container_name: backend
-    ports:
-      - "8000:8000"
-    environment:
-      - MQTT_HOST=mqtt
-      - MQTT_PORT=1883
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DB_NAME=${DB_IOT_NAME}
-      - DB_HOST=database
-      - DB_PORT=5432
-      - SECRET_KEY=${BACKEND_SECRET_KEY}
-      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASS}@database:5432/${DB_IOT_NAME}
-    depends_on:
-      database:
-        condition: service_healthy
-      mqtt:
-        condition: service_started
-    networks:
-      - iot-network
-    restart: unless-stopped
+  #backend:
+  #  build:
+  #    context: ./backend
+  #    dockerfile: Dockerfile
+  #    cache_from:
+  #      - iotproject_backend:latest
+  #  image: iotproject_backend:latest
+  #  container_name: backend
+  #  ports:
+  #    - "8000:8000"
+  #  environment:
+  #    - MQTT_HOST=mqtt
+  #    - MQTT_PORT=1883
+  #    - DB_USER=${DB_USER}
+  #    - DB_PASS=${DB_PASS}
+  #    - DB_NAME=${DB_IOT_NAME}
+  #    - DB_HOST=database
+  #    - DB_PORT=5432
+  #    - SECRET_KEY=${BACKEND_SECRET_KEY}
+  #    - DATABASE_URL=postgresql://${DB_USER}:${DB_PASS}@database:5432/${DB_IOT_NAME}
+  #  depends_on:
+  #    database:
+  #      condition: service_healthy
+  #    mqtt:
+  #      condition: service_started
+  #  networks:
+  #    - iot-network
+  #  restart: unless-stopped
 
   frontend:
     build:
@@ -97,19 +100,14 @@ services:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
       - NEXT_PUBLIC_STRAPI_API_URL=${NEXT_PUBLIC_STRAPI_API_URL}
     depends_on:
-      - backend
+      # - backend
+      - strapi
     networks:
       - iot-network
     restart: unless-stopped
   
   strapi:
-    #image: strapi/strapi:latest
-    build:
-      context: ./strapi
-      dockerfile: Dockerfile
-      cache_from:
-        - iotproject_strapi:latest
-    image: strapi/strapi:latest
+    image: doblenk/iotproject-strapi:latest  # ← Langsung dari DockerHub
     container_name: strapi
     env_file:
       - .env
