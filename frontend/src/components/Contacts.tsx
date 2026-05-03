@@ -1,9 +1,28 @@
 "use client";
 
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, ChevronDown, ChevronUp } from 'lucide-react';
+import { getPhoneLink, getPhoneDisplay } from "@/components/ui/profile/Footer";
+import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
-export function Contacts() {
+interface ContactPerson {
+  id?: string | number;
+  Name?: string;
+  Phone?: string;
+}
+
+interface BusinessHours {
+  WorkingDays?: string;
+  Holidays?: string;
+}
+
+interface ContactData {
+  Address?: string;
+  Contacts?: ContactPerson[];
+  Email?: string;
+  BussinessHours?: BusinessHours;
+}
+
+export function Contacts({ contactData }: { contactData?: ContactData }) {
+  /*
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,6 +79,7 @@ export function Contacts() {
         'Simply fill out the contact form or call us directly. We\'ll schedule a free initial consultation to understand your goals and provide recommendations for next steps.',
     },
   ];
+  */
 
   return (
     <div>
@@ -193,10 +213,7 @@ export function Contacts() {
                     <div>
                       <p className="font-semibold text-slate-900 mb-1">Alamat</p>
                       <p className="text-sm text-slate-600">
-                        Trusmiland Rumah Ningrat Blok B No 48 <br />
-                        Desa Cracas Kec. Cilimus<br />
-                        Kuningan Jawa Barat<br />
-                        45556
+                        {contactData?.Address}
                       </p>
                     </div>
                   </div>
@@ -207,19 +224,15 @@ export function Contacts() {
                     </div>
                     <div>
                       <p className="font-semibold text-slate-900 mb-1">Kontak</p>
-                      <a 
-                        href="https://wa.me/6281380126377?text=Halo,%20saya%20ingin%20bertanya....." 
-                        className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors"
-                      >
-                        (+62) 813-8012-6377 (Olin)
-                      </a>
-                      <br/>
-                      <a 
-                        href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20bertanya....." 
-                        className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors"
-                      >
-                        (+62) 812-3456-7890 (Bambang)
-                      </a>
+                      {contactData?.Contacts?.map((contact, index) => (
+                        <a
+                          key={contact.id ?? contact.Phone ?? index}
+                          href={getPhoneLink(contact.Phone)}
+                          className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors block"
+                        >
+                          {getPhoneDisplay(contact.Phone, contact.Name)}
+                        </a>
+                      ))}
                     </div>
                   </div>
 
@@ -230,10 +243,10 @@ export function Contacts() {
                     <div>
                       <p className="font-semibold text-slate-900 mb-1">Email</p>
                       <a 
-                        href="mailto:pakar.ekosistem@gmail.com?subject=Halo&body=Apa%kabar" 
+                        href={contactData?.Email ? `mailto:${contactData.Email}?subject=Halo&body=Apa%20kabar` : '#'}
                         className="text-sm text-slate-600 hover:text-[#22c55e] transition-colors"
                       >
-                        pakar.ekosistem@gmail.com
+                        {contactData?.Email ?? 'info@pakar-ekosistem.id'}
                       </a>
                     </div>
                   </div>
@@ -245,8 +258,8 @@ export function Contacts() {
                     <div>
                       <p className="font-semibold text-slate-900 mb-1">Jam Operasional</p>
                       <p className="text-sm text-slate-600">
-                        Hari Kerja: 8:00 AM - 6:00 PM<br />
-                        Hari Libur Nasional: Tutup
+                        {contactData?.BussinessHours?.WorkingDays}<br />
+                        {contactData?.BussinessHours?.Holidays}
                       </p>
                     </div>
                   </div>

@@ -3,8 +3,7 @@
 //import { useState } from 'react';
 //import Link from 'next/link';
 import type { FC } from 'react';
-import { Youtube, Music2, Instagram, Facebook, Share2, Mail, Phone, MapPin, /*Send*/ } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Youtube, Music2, Instagram, Facebook, Share2, Mail, Phone, MapPin } from 'lucide-react';
 import { formatPhoneNumber } from '@/utils/formatter';
 
 
@@ -104,7 +103,7 @@ function getDisplayName(url?: string, username?: string): string {
  * Format phone for calling
  * Removes all non-digits for tel: links
  */
-function getPhoneLink(phone?: string): string {
+export function getPhoneLink(phone?: string): string {
   return `tel:${phone?.replace(/\D/g, '') || DEFAULTS.PHONE}`;
 }
 
@@ -112,7 +111,7 @@ function getPhoneLink(phone?: string): string {
  * Format contact phone display
  * Returns formatted phone or default
  */
-function getPhoneDisplay(phone?: string, name?: string): string {
+export function getPhoneDisplay(phone?: string, name?: string): string {
   return formatPhoneNumber(phone || DEFAULTS.PHONE, name || '');
 }
 
@@ -223,11 +222,7 @@ function ContactInfo({ primaryContact, address, email }: ContactInfoProps) {
 }
 
 export function Footer({ data }: FooterProps): React.ReactElement {
-  const [year, setYear] = useState<number>(new Date().getFullYear());
-
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
+  const year = new Date().getFullYear();
 
   const {
     CompanyName = DEFAULTS.COMPANY_NAME,

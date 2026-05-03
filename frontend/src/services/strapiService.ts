@@ -16,10 +16,6 @@ import {
   CONTACT_PAGE_QUERIES,
   PORTFOLIO_QUERIES,
   TESTIMONIAL_QUERIES,
-  /*buildQuery,
-  buildPaginatedQuery,
-  buildFilteredQuery,
-  type QueryOptions,*/
 } from '@/utils/queryBuilder';
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
@@ -167,6 +163,10 @@ export async function getPortfolioDetail(id: string | number): Promise<any> {
  */
 export async function searchPortfolio(searchTerm: string, page = 1, pageSize = 12) {
   return fetchFromStrapi('/portofolios', PORTFOLIO_QUERIES.search(searchTerm, page, pageSize));
+}
+
+export async function getPortofolioPage() {
+  return fetchFromStrapi('/portofolio-detail', PORTFOLIO_QUERIES.page);
 }
 
 /**

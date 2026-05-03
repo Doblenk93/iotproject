@@ -5,7 +5,7 @@ import { Filter } from 'lucide-react';
 import { Portfolio } from '@/types/portfolio';
 import { getPortfolioList, getPortfolioByType } from '@/services/strapiService';
 import { PortfolioCard } from '@/components/pages/portfolio/PortfolioCard';
-import { PortfolioModal } from '@/components/PortfolioModal';
+import { PortfolioModal } from '@/components/pages/portfolio/PortfolioModal';
 import { PortfolioSkeleton } from '@/components/pages/portfolio/PortfolioSkeleton';
 import type { PortfolioListResponse } from '@/types/portfolio';
 

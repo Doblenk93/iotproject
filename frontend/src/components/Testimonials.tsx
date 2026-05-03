@@ -1,13 +1,44 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect, useCallback } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
 
+interface TestimonialItem {
+  id?: string | number;
+  ClientPicture?: string;
+  ClientName?: string;
+  ClientWords?: string;
+  ClientCompany?: string;
+}
+
 interface TestimonialProps {
-  items: any[];
+  items: TestimonialItem[];
   max?: number;
   randomize?: boolean;
+}
+
+const DEFAULT_MAX_TESTIMONIALS = 10;
+
+function createDeterministicSeed(items: TestimonialItem[], max: number) {
+  return items.reduce((seed, item) => {
+    const idPart = item.id?.toString() ?? '';
+    const namePart = item.ClientName ?? '';
+    return seed + idPart.length + namePart.length;
+  }, max);
+}
+
+function seededShuffle<T>(items: T[], seed: number) {
+  const result = [...items];
+  let value = seed;
+
+  for (let i = result.length - 1; i > 0; i--) {
+    value = (value * 9301 + 49297) % 233280;
+    const j = Math.floor((value / 233280) * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
 }
 
 export function Testimonials(
@@ -16,37 +47,26 @@ export function Testimonials(
     max = 3, 
     randomize = false 
   }: TestimonialProps ) {
-  const [displayedTestimonials, setDisplayedTestimonials] = useState<any[]>([]);
-  const [mounted, setMounted] = useState(false);
-  
+  const displayedTestimonials = useMemo(() => {
+    const processedData = randomize
+      ? seededShuffle([...items], createDeterministicSeed(items, max))
+      : [...items];
+
+    // 2. Logika Max (Ambil sesuai prop max, tapi JANGAN LEBIH dari 10)
+    const finalMax = Math.min(max, DEFAULT_MAX_TESTIMONIALS);
+    
+    // 3. Potong array sesuai max
+    return processedData.slice(0, finalMax);
+  }, [items, max, randomize]);
+
   // State baru untuk animasi dan deteksi kursor (hover)
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const testimonials = items;
-  if (!testimonials || testimonials.length === 0) return null;
-
-  useEffect(() => {
-    let processedData = [...items];
-
-    // 1. Logika Randomize (menggunakan Fisher-Yates Shuffle agar benar-benar acak)
-    if (randomize) {
-      for (let i = processedData.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [processedData[i], processedData[j]] = [processedData[j], processedData[i]];
-      }
-    }
-
-    // 2. Logika Max (Ambil sesuai prop max, tapi JANGAN LEBIH dari 10)
-    const finalMax = Math.min(max, 10) + 1;
-    
-    // 3. Potong array sesuai max
-    setDisplayedTestimonials(processedData.slice(0, finalMax));
-    
-    // Tandai bahwa komponen sudah di-mount di klien
-    setMounted(true);
-  }, [items, max, randomize]);
+  const activeTestimonialIndex = displayedTestimonials.length
+    ? Math.min(currentTestimonial, displayedTestimonials.length - 1)
+    : 0;
 
   // Fungsi transisi dengan jeda waktu untuk animasi
   const changeTestimonial = useCallback((newIndex: number) => {
@@ -61,12 +81,12 @@ export function Testimonials(
   }, [currentTestimonial, isAnimating]);
 
   const nextTestimonial = useCallback(() => {
-    changeTestimonial((currentTestimonial + 1) % testimonials.length);
-  }, [changeTestimonial, currentTestimonial, testimonials.length]);
+    changeTestimonial((currentTestimonial + 1) % displayedTestimonials.length);
+  }, [changeTestimonial, currentTestimonial, displayedTestimonials.length]);
 
   const prevTestimonial = useCallback(() => {
-    changeTestimonial((currentTestimonial - 1 + testimonials.length) % testimonials.length);
-  }, [changeTestimonial, currentTestimonial, testimonials.length]);
+    changeTestimonial((currentTestimonial - 1 + displayedTestimonials.length) % displayedTestimonials.length);
+  }, [changeTestimonial, currentTestimonial, displayedTestimonials.length]);
 
   // Efek Timer Auto-play
   useEffect(() => {
@@ -79,11 +99,10 @@ export function Testimonials(
     return () => clearInterval(timer);
   }, [currentTestimonial, isHovered, nextTestimonial, displayedTestimonials.length]);
 
-  // CEGAH RENDER SEBELUM MOUNTED ATAU JIKA DATA KOSONG
-  if (!mounted || displayedTestimonials.length === 0) return null;
+  if (displayedTestimonials.length === 0) return null;
 
   return (
-    <section className="py-10 bg-slate-50">
+    <section suppressHydrationWarning className="py-10 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div 
           className="relative max-w-4xl mx-auto"
@@ -101,8 +120,8 @@ export function Testimonials(
             >
               <div className="h-full md:min-h-[350px] relative col-span-1">
                 <ImageWithFallback 
-                  src={testimonials[currentTestimonial].ClientPicture} 
-                  alt={testimonials[currentTestimonial].ClientName} 
+                  src={displayedTestimonials[activeTestimonialIndex]?.ClientPicture} 
+                  alt={displayedTestimonials[activeTestimonialIndex]?.ClientName} 
                   className="w-full h-full object-cover" 
                 />
               </div>
@@ -112,19 +131,18 @@ export function Testimonials(
                   {'"'}
                 </div>
                 
-                <div className='flex flex-grow overflow-hidden items-center'>
-                  <p className="text-base md:text-lg text-slate-700 italic cursor-default 
-                    break-words line-clamp-6 md:line-clamp-none overflow-wrap-anywhere w-full">
-                    {testimonials[currentTestimonial].ClientWords}
+                <div className="flex flex-grow overflow-hidden items-center">
+                  <p className="text-base md:text-lg text-slate-700 italic cursor-default break-words line-clamp-6 md:line-clamp-none overflow-wrap-anywhere w-full">
+                    {displayedTestimonials[activeTestimonialIndex]?.ClientWords}
                   </p>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-slate-200"> {/* mt-auto mendorong nama author ke bawah jika teks pendek */}
                   <div className="font-bold text-slate-900">
-                    {testimonials[currentTestimonial].ClientName}
+                    {displayedTestimonials[activeTestimonialIndex]?.ClientName}
                   </div>
                   <div className="text-sm text-slate-600">
-                    {testimonials[currentTestimonial].ClientCompany}
+                    {displayedTestimonials[activeTestimonialIndex]?.ClientCompany}
                   </div>
                 </div>
               </div>

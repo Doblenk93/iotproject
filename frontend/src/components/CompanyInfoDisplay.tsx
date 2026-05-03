@@ -5,7 +5,6 @@
  * Implementasi di server-side bisa langsung di page.tsx
  */
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { CompanyInfo } from '@/types/strapi';
 import { getStrapiImageUrl } from '@/services/strapiService';

@@ -1,7 +1,3 @@
-'use client';
-
-import { useState, useRef, useEffect } from 'react';
-
 interface VideoThumbnailExtractorProps {
   videoUrl: string;
   timeOffset?: number; // seconds, default 2

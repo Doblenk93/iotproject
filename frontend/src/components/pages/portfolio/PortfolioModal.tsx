@@ -1,152 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Play, MapPin, Calendar, FileText } from 'lucide-react';
-import { Portfolio, BlockEditorContent, getPortfolioDateRange } from '@/types/portfolio';
-import { isVideo, getVideoSourceUrl, getMediaThumbnail, getMediaAltText, getMediaDisplayUrl } from '@/utils/mediaHandler';
-import { ImageWithFallback } from '@/components/ImageWithFallback';
+import { X, MapPin, Calendar, FileText } from 'lucide-react';
+import { Portfolio, getPortfolioDateRange } from '@/types/portfolio';
+import { PortfolioMediaViewer } from '@/components/pages/portfolio/PortfolioMediaViewer';
+import { RichTextRenderer } from '@/components/pages/portfolio/RichTextRenderer';
 
 interface PortfolioModalProps {
   portfolio: Portfolio | null;
   isOpen: boolean;
   onClose: () => void;
-}
-
-/**
- * Rich Text Block Renderer
- * Menampilkan Strapi Block Editor content dengan styling
- */
-function RichTextRenderer({ content }: { content: BlockEditorContent }) {
-  if (!content || !Array.isArray(content)) {
-    return <p className="text-slate-500 italic">Tidak ada deskripsi tersedia</p>;
-  }
-
-  return (
-    <div className="prose prose-slate max-w-none space-y-4">
-      {content.map((block, idx) => {
-        const text = block.children?.map(child => child.text).join('') || '';
-
-        switch (block.type) {
-          case 'heading':
-            const level = block.level || 2;
-            const HeadingTag = `h${level}` as any;
-            const headingClasses = {
-              1: 'text-3xl font-bold text-slate-900',
-              2: 'text-2xl font-bold text-slate-800',
-              3: 'text-xl font-semibold text-slate-800',
-              4: 'text-lg font-semibold text-slate-800',
-              5: 'text-base font-semibold text-slate-800',
-              6: 'text-sm font-semibold text-slate-800',
-            };
-
-            return (
-              <HeadingTag key={idx} className={`${headingClasses[level as keyof typeof headingClasses]} mt-8 mb-4 first:mt-0`}>
-                {text}
-              </HeadingTag>
-            );
-
-          case 'paragraph':
-            return (
-              <p key={idx} className="text-slate-600 leading-relaxed">
-                {block.children?.map((child, childIdx) => {
-                  let content: React.ReactNode = child.text;
-                  if (child.bold) content = <strong className="text-slate-900 font-bold">{content}</strong>;
-                  if (child.italic) content = <em className="italic">{content}</em>;
-                  if (child.code) content = <code className="bg-slate-100 text-green-700 px-1.5 py-0.5 rounded text-sm font-mono">{content}</code>;
-                  return <span key={childIdx}>{content}</span>;
-                })}
-              </p>
-            );
-
-          case 'quote':
-            return (
-              <blockquote key={idx} className="border-l-4 border-green-500 pl-4 py-2 italic text-slate-700 bg-slate-50 rounded-r-lg">
-                {text}
-              </blockquote>
-            );
-
-          case 'code':
-            return (
-              <pre key={idx} className="bg-slate-900 p-4 rounded-xl overflow-auto shadow-inner">
-                <code className="text-sm text-slate-100 font-mono">{text}</code>
-              </pre>
-            );
-
-          case 'list':
-            return (
-              <ul key={idx} className="list-disc list-inside text-slate-600 space-y-2 ml-2">
-                <li>{text}</li>
-              </ul>
-            );
-
-          default:
-            return <p key={idx} className="text-slate-600">{text}</p>;
-        }
-      })}
-    </div>
-  );
-}
-
-/**
- * Video Player Component
- * Dengan play button overlay saat thumbnail view
- */
-function MediaViewer({ portfolio }: { portfolio: Portfolio }) {
-  const [showVideo, setShowVideo] = useState(false);
-  const media = portfolio.Image;
-  const isVideoMedia = isVideo(media);
-  const videoSrc = getVideoSourceUrl(media);
-  const thumbnail = getMediaThumbnail(media);
-  const displayImage = getMediaDisplayUrl(media);
-  const altText = getMediaAltText(media, portfolio.Title);
-
-  if (!isVideoMedia && showVideo) {
-    setShowVideo(false);
-  }
-
-  return (
-    <div className="relative w-full aspect-video bg-slate-800 rounded-lg overflow-hidden">
-      {isVideoMedia ? (
-        <>
-          {!showVideo ? (
-            <>
-              <video
-                //src={thumbnail + '?t=0.1'}
-                //alt={altText}
-                className="w-full h-full object-cover"
-                preload='metadata'
-              >
-                <source src={videoSrc + '?t=0.1'}/>
-              </video>
-
-              <button
-                onClick={() => setShowVideo(true)}
-                className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/50 transition-colors group"
-              >
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play className="w-8 h-8 text-white fill-white ml-1" />
-                </div>
-              </button>
-            </>
-          ) : (
-            <video
-              src={videoSrc}
-              poster={thumbnail}
-              controls
-              autoPlay
-              className="w-full h-full"
-            />
-          )}
-        </>
-      ) : (
-        <ImageWithFallback
-          src={displayImage}
-          alt={altText}
-          className="w-full h-full object-cover"
-        />
-      )}
-    </div>
-  );
 }
 
 /**
@@ -213,7 +76,7 @@ export function PortfolioModal({ portfolio, isOpen, onClose }: PortfolioModalPro
           
           {/* Media Player Container */}
           <div className="mb-8 rounded-xl overflow-hidden bg-slate-100 shadow-inner">
-            <MediaViewer portfolio={portfolio} />
+            <PortfolioMediaViewer portfolio={portfolio} />
           </div>
 
           {/* Quick Info Grid */}

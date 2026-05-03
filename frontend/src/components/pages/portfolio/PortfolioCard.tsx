@@ -6,6 +6,7 @@ import { Portfolio, getPortfolioDateRange } from '@/types/portfolio';
 import { isVideo, getMediaThumbnail, getVideoSourceUrl, getMediaAltText } from '@/utils/mediaHandler';
 import { ImageWithFallback } from '@/components/ImageWithFallback';
 import { VideoThumbnailExtractor } from '@/components/VideoThumbnailExtractor';
+import { getPortfolioTypeColor } from '@/components/pages/portfolio/portfolioConstants';
 
 interface PortfolioCardProps {
   portfolio: Portfolio;
@@ -27,13 +28,7 @@ export function PortfolioCard({ portfolio, onDetailClick }: PortfolioCardProps) 
   const videoSrc = isVideoMedia ? getVideoSourceUrl(media) : null;
   const thumbnail = getMediaThumbnail(media);
   const altText = getMediaAltText(media, portfolio.Title);
-
-  const typeColors: Record<string, string> = {
-    Environmental: 'bg-green-600 text-white',
-    Electrical: 'bg-blue-600 text-white',
-  };
-
-  const typeColor = typeColors[portfolio.Type] || 'bg-slate-100 text-slate-600 border border-slate-200';
+  const typeColor = getPortfolioTypeColor(portfolio.Type);
 
   return (
     <div
@@ -61,14 +56,14 @@ export function PortfolioCard({ portfolio, onDetailClick }: PortfolioCardProps) 
 
         {/* Video Indicator */}
         {isVideoMedia && (
-          <div className="absolute top-3 right-3 w-9 h-9 bg-green-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
+          <div className="absolute top-3 right-3 w-9 h-9 bg-green-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 z-20 shadow-[0_0_15px_rgba(0,0,0,0.3)]"> 
             <Play className="w-4 h-4 text-white fill-white ml-0.5" />
           </div>
         )}
 
         {/* Overlay on Hover */}
         <div
-          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 ${
             isHovering ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -103,11 +98,11 @@ export function PortfolioCard({ portfolio, onDetailClick }: PortfolioCardProps) 
 
       {/* Card Info */}
       <div className="mt-4 px-1">
-        <h3 className="text-slate-800 font-bold text-lg group-hover:text-green-600 transition-colors line-clamp-2 min-h-[3.5rem] leading-snug">
+        <h3 className="text-slate-800 font-bold text-lg group-hover:text-green-600 transition-colors line-clamp-1 min-h-[2.5rem] leading-snug">
           {portfolio.Title}
         </h3>
 
-        <div className="flex items-center gap-2 mt-3">
+        <div className="flex items-center gap-2 mt-1">
           <span className={`px-3 py-1 rounded-md text-[12px] font-bold tracking-wide ${typeColor}`}>
             {portfolio.Type}
           </span>

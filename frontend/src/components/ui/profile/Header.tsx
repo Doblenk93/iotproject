@@ -1,12 +1,23 @@
 "use client";
 
+import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
+interface CompanyLogoData {
+  attributes?: {
+    url?: string;
+  };
+  url?: string;
+}
+
 interface HeaderProps {
-  data: any;
+  data?: {
+    CompanyName?: string;
+    CompanyLogo?: CompanyLogoData;
+  };
 }
 
 export function Header({ data }: HeaderProps) {
@@ -57,12 +68,14 @@ export function Header({ data }: HeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
             >
               <div className="relative w-10 h-10 flex-shrink-0">
-                <img 
+                <Image
                   src={logoUrl}
-                  alt="PEI Logo" 
-                  className="w-10 h-10 rounded-lg object-contain"
+                  alt="PEI Logo"
+                  fill
+                  unoptimized
+                  className="rounded-lg object-contain"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/favicon.ico';
+                    e.currentTarget.src = '/favicon.ico';
                   }}
                 />
               </div>

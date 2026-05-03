@@ -201,7 +201,7 @@ export const GENERAL_INFO_QUERIES = {
 
   // For contact form: email, contact fields
   contactForm: buildQuery({
-    populate: ['Contacts'],
+    populate: ['Contacts', 'Socials', 'BussinessHours'],
     fields: ['Email', 'Address'],
   }),
 
@@ -253,7 +253,18 @@ export const ABOUT_PAGE_QUERIES = {
 export const ABOUT_PAGE_QUERIES = {
   complete: buildQuery({
     // Gunakan Array untuk populate sederhana
-    populate: ['Background', 'VisionAndMission', 'Advantages'],
+    populate: {
+      VisionAndMission: {
+        populate: '*',
+      },
+      Advantages: {
+        populate: '*',
+      },
+      Background: {
+        populate: '*',
+      }
+    },
+    fields: ['PageH1', 'H1Detail'],
     // Atau gunakan Object jika butuh populate yang lebih dalam (nested)
     /* 
     populate: {
@@ -284,6 +295,11 @@ export const CONTACT_PAGE_QUERIES = {
  * - Title, Type, Description, Image, Location, Timestamp
  */
 export const PORTFOLIO_QUERIES = {
+  page:
+    buildQuery({
+      populate: ['Background'],
+      fields: ['PageH1', 'H1Detail'],
+    }),
   /**
    * Featured portfolios (untuk homepage showcase)
    * Sorted by pinnedOrder, limited to small number
