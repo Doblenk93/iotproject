@@ -6,7 +6,8 @@ import { Portfolio, getPortfolioDateRange } from '@/types/portfolio';
 import { PortfolioMediaViewer } from '@/components/pages/portfolio/PortfolioMediaViewer';
 import { RichTextRenderer } from '@/components/pages/portfolio/RichTextRenderer';
 import { getPortfolioDetail } from '@/services/strapiService';
-import { getMediaThumbnail } from '@/utils/mediaHandler';
+import { getMediaThumbnail, getMediaAltText, getVideoSourceUrl, isVideo } from '@/utils/mediaHandler';
+import { VideoThumbnailExtractor } from '@/components/VideoThumbnailExtractor';
 
 interface PortfolioModalProps {
   portfolio: Portfolio | null;
@@ -142,6 +143,9 @@ export function PortfolioModal({ portfolio, isOpen, onClose }: PortfolioModalPro
                 {[activePortfolio.Image, ...additionalImages].map((media, index) => {
                   const thumb = getMediaThumbnail(media);
                   const isActive = selectedMedia?.url === media.url;
+                  const isVideoMedia = isVideo(media);
+                  const videoSrc = isVideoMedia ? getVideoSourceUrl(media) : undefined;
+                  const altText = getMediaAltText(media, portfolio.Title);
 
                   return (
                     <button
@@ -152,11 +156,31 @@ export function PortfolioModal({ portfolio, isOpen, onClose }: PortfolioModalPro
                         isActive ? 'border-green-600 shadow-sm' : 'border-slate-200'
                       }`}
                     >
-                      <img
-                        src={thumb}
-                        alt={media.alternativeText || media.name || portfolio.Title}
-                        className="w-full h-24 object-cover"
-                      />
+                      <div className="relative w-full h-24 bg-slate-200">
+                        {isVideoMedia && videoSrc ? (
+                          <VideoThumbnailExtractor
+                            videoUrl={videoSrc}
+                            poster={thumb}
+                            timeOffset={0.5}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <img
+                            src={thumb}
+                            alt={altText}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                        {isVideoMedia && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                            <div className="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow">
+                              <svg viewBox="0 0 24 24" className="w-5 h-5">
+                                <path d="M8 5v14l11-7z" fill="currentColor" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </button>
                   );
                 })}
